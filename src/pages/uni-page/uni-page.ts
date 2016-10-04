@@ -4,16 +4,8 @@ import {Geolocation} from 'ionic-native';
 
 import {GeolocationService} from '../../providers/geolocation-service/geolocation-service';
 import {ConnectivityService} from '../../providers/connectivity-service/connectivity-service';
-//
-import {LoadingModal} from '../../components/loading-modal/loading-modal';
 
-// // // Import menu pages
-// import {UniDetailPage} from '../uni-detail-page/uni-detail-page';
-// //
-// //
-
-//
-// import {TranslatePipe} from '../../pipes/translate';
+import {UniDetailPage} from '../uni-detail-page/uni-detail-page';
 
 @Component({
   selector: 'uni-page',
@@ -205,7 +197,7 @@ export class UniPage {
 
 
         console.log(me.results);
-        // me.navCtrl.push(UniDetailPage, {item_select:me.results,page:me.page});
+        me.navCtrl.push(UniDetailPage, {item_select:me.results,page:me.page});
 
       });
     }
