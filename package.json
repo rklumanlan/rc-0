@@ -37,6 +37,8 @@
       "version": "",
       "locator": "ios"
     }
+    ,
+    "android"
   ],
   "description": "rc-0: An Ionic project"
 }

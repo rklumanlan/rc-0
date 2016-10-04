@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { AboutPage } from '../pages/about/about';
-import { HomePage } from '../pages/home/home';
 
 import { LandingPage } from '../pages/landingpage/landingpage';
 import { MainPage } from '../pages/main/main';
@@ -15,12 +13,11 @@ import {ConnectivityService} from './../providers/connectivity-service/connectiv
 
 
 
+
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
     MainPage,
-    HomePage,
     LandingPage,
     UniPage,
     UniDetailPage,
@@ -32,9 +29,7 @@ import {ConnectivityService} from './../providers/connectivity-service/connectiv
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
     MainPage,
-    HomePage,
     LandingPage,
     UniPage,
     UniDetailPage,

@@ -1,6 +1,5 @@
 import {Component,ViewChild} from '@angular/core';
 import {NavController, NavParams, Content} from 'ionic-angular';
-import {Geolocation} from 'ionic-native';
 
 import {GeolocationService} from '../../providers/geolocation-service/geolocation-service';
 import {ConnectivityService} from '../../providers/connectivity-service/connectivity-service';

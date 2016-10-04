@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {NavParams} from 'ionic-angular';
-import {Geolocation} from 'ionic-native';
 import {GeolocationService} from '../../providers/geolocation-service/geolocation-service';
 
 @Component({
+  selector: 'uni-map-page',
   templateUrl: 'uni-map-page.html'
 })
 

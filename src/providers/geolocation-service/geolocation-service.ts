@@ -1,11 +1,6 @@
 import {AlertController, ToastController} from 'ionic-angular';
-import {Injectable, Inject} from '@angular/core';
-import {Http} from '@angular/http';
+import {Injectable} from '@angular/core';
 import {ConnectivityService} from '../../providers/connectivity-service/connectivity-service';
-// import {TranslateService} from "ng2-translate/ng2-translate";
-
-
-import {Geolocation} from 'ionic-native';
 
 declare var google;
 

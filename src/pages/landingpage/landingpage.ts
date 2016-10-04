@@ -3,8 +3,6 @@ import {NavParams, NavController, AlertController} from 'ionic-angular';
 
 import {GeolocationService} from '../../providers/geolocation-service/geolocation-service';
 //
-// import {TranslatePipe} from "ng2-translate/ng2-translate";
-//
 import {MainPage} from '../main/main';
 
 declare var google;
@@ -62,7 +60,7 @@ export class LandingPage {
     });
   }
 
-  showlatlong(event) {
+  showlatlong() {
     var me = this;
     var geoCoords: any = {};
     console.log("entered shwo latlong");

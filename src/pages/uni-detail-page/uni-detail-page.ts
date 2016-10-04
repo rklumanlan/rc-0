@@ -1,12 +1,13 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams, AlertController} from 'ionic-angular';
-import {Geolocation,InAppBrowser} from 'ionic-native';
+import {InAppBrowser} from 'ionic-native';
 import {GeolocationService} from '../../providers/geolocation-service/geolocation-service';
 
 
 import {UniMapPage} from '../uni-map-page/uni-map-page';
 
 @Component({
+  selector: 'uni-detail-page',
   templateUrl: 'uni-detail-page.html'
 })
 export class UniDetailPage {
@@ -129,7 +130,7 @@ export class UniDetailPage {
   launchWebsite(url){
     var me = this;
     var link = url;
-    var w = document.getElementById('website_btn');
+    // var w = document.getElementById('website_btn');
 
     if (link !== undefined){
       console.log(link);
