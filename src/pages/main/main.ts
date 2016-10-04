@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Storage, SqlStorage, NavParams, NavController,AlertController} from 'ionic-angular';
+import {NavParams, NavController,AlertController} from 'ionic-angular';
 
 import {TabsPage} from '../jeepney/tabs/tabs';
 
