@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+
 import { LandingPage } from '../pages/landingpage/landingpage';
+import { MainPage } from '../pages/main/main';
+import { UniPage } from '../pages/uni-page/uni-page';
 
 import {GeolocationService} from './../providers/geolocation-service/geolocation-service'
 import {ConnectivityService} from './../providers/connectivity-service/connectivity-service';
@@ -14,10 +15,10 @@ import {ConnectivityService} from './../providers/connectivity-service/connectiv
   declarations: [
     MyApp,
     AboutPage,
-    ContactPage,
+    MainPage,
     HomePage,
-    TabsPage,
-    LandingPage
+    LandingPage,
+    UniPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -26,10 +27,10 @@ import {ConnectivityService} from './../providers/connectivity-service/connectiv
   entryComponents: [
     MyApp,
     AboutPage,
-    ContactPage,
+    MainPage,
     HomePage,
-    TabsPage,
-    LandingPage
+    LandingPage,
+    UniPage
   ],
   providers: [GeolocationService, ConnectivityService]
 })

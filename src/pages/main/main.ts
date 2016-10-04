@@ -1,55 +1,65 @@
 import {Component} from '@angular/core';
-import {Storage, SqlStorage, NavParams, NavController,AlertController} from 'ionic-angular';
-
-import {TabsPage} from '../jeepney/tabs/tabs';
+import {NavParams, NavController,AlertController} from 'ionic-angular';
 
 import {UniPage} from '../uni-page/uni-page';
-// // Import menu pages until here
-import {DataService} from '../../providers/data-service/data-service';
-// // import {Geolocation} from 'ionic-native';
-//
-import {GoogleMapsService} from '../../providers/google-maps-service/google-maps-service';
+
 import {GeolocationService} from '../../providers/geolocation-service/geolocation-service';
-
 import {ConnectivityService} from '../../providers/connectivity-service/connectivity-service';
-import {TranslatePipe} from "ng2-translate/ng2-translate";
 
+
+
+declare var google;
 
 @Component({
-  templateUrl: 'build/pages/main/main.html',
-  pipes: [TranslatePipe]
+  selector: 'main',
+  templateUrl: 'main.html'
 })
+export class MainPage {
 
-export class MainPage{
-  // static get parameters(){
-  //   return [[DataService],[GeolocationService],[NavParams],[NavController],[AlertController],[ConnectivityService]];
-  // }
+  public geolocation2: any = "";
+  public details: any;
+  // public TabsPage:any = TabsPage;
 
-  private geolocation2: any = "";
-  private details: any;
-  private TabsPage:any = TabsPage;
-
-  constructor(private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController, private geolocationService: GeolocationService, private connectivity: ConnectivityService, private dataService: DataService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public geolocationService: GeolocationService, public connectivity: ConnectivityService) {
     this.details = this.navParams.get('geoloc');
     console.log(this.details);
     this.geolocation2 = this.details.locationName;
 
-    this.dataService.importDB();
+    // this.dataService.importDB();
   }
 
-  // ionViewDidEnter(){
-  //   // setTimeout(function() {
-  //     document.getElementById("lowerDiv").style.display = "inline";
-  //
-  //   // },600);
-  //
-  // }
-  //
-  autocomplete(searchbar){
-    console.log(searchbar);
-    this.geolocationService.autoComplete('landingpage');
+  autocomplete2(searchbar){
+    console.log("autocomplete");
+    var me = this;
+    var latlng:any = {};
+    var autocomplete = new google.maps.places.Autocomplete(document.getElementById('geolocation2').getElementsByTagName('input')[0]);
+    autocomplete.addListener('place_changed', function() {
+      var place = autocomplete.getPlace();
+      latlng.lat = place.geometry.location.lat();
+      latlng.lng = place.geometry.location.lng();
+
+      var autolocString = [];
+      var autolocString2;
+
+
+
+      console.log(place);
+
+      for (var i = 0; i < place.address_components.length; i++) {
+
+        if (place.address_components[i].types[0]!='administrative_area_level_2') {
+          autolocString.push(place.address_components[i].long_name);
+        }
+        autolocString2 = autolocString.join(', ');
+      }
+      latlng.locationName = autolocString2;
+      this.geolocation2 = autolocString2;
+      // console.log(me.latlng.locationName);
+      // console.log(me.latlng.lat);
+      console.log("autolocString2");
+    });
   }
-  //
+
   showlatlong2(event) {
     var me = this;
     var geoCoords: any = {};

@@ -299,54 +299,7 @@ export class GeolocationService {
           callback(locationName);
       });
   }
-
-  autoComplete(ctr){
-    var me = this;
-    console.log('lll');
-
-
-    // console.log(document.getElementById('geo'));
-    // console.log(new google.maps.places);
-    var input;
-    if (ctr =='landingpage') {
-      console.log('land');
-      input = document.getElementById('geolocation').getElementsByTagName('input')[0];
-    }
-    else if (ctr =='mainpage') {
-      console.log('main');
-      input = document.getElementById('geolocation2').getElementsByTagName('input')[0];
-    }
-
-    // console.log(new google.maps.places.Autocomplete(document.getElementById('geo')));
-    var autocomplete = new google.maps.places.Autocomplete(input);
-    autocomplete.addListener('place_changed', function() {
-      var place = autocomplete.getPlace();
-      me.latlng.lat = place.geometry.location.lat();
-      me.latlng.lng = place.geometry.location.lng();
-
-      var autolocString = [];
-      var autolocString2;
-      console.log(place);
-
-      for (var i = 0; i < place.address_components.length; i++) {
-
-        if (place.address_components[i].types[0]!='administrative_area_level_2') {
-          autolocString.push(place.address_components[i].long_name);
-        }
-        autolocString2 = autolocString.join(', ');
-      }
-      me.latlng.locationName = autolocString2;
-      console.log(me.latlng.locationName);
-      console.log(me.latlng.lat);
-
-      if (ctr == 'landingpage') {
-        // me.nav.push(MainPage, { geoloc: me.latlng });
-      }
-
-    });
-
-
-  }
+  
 
 
   // Location Map

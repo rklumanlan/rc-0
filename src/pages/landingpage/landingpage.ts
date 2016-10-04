@@ -58,7 +58,7 @@ export class LandingPage {
       // console.log(me.latlng.locationName);
       // console.log(me.latlng.lat);
       console.log("autolocString2");
-      this.navCtrl.push(MainPage, { geoloc: latlng });
+      me.navCtrl.push(MainPage, { geoloc: latlng });
     });
   }
 
