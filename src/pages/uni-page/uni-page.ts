@@ -5,7 +5,8 @@ import {Geolocation} from 'ionic-native';
 import {GeolocationService} from '../../providers/geolocation-service/geolocation-service';
 import {ConnectivityService} from '../../providers/connectivity-service/connectivity-service';
 //
-// import {LoadingModal} from '../../components/loading-modal/loading-modal';
+import {LoadingModal} from '../../components/loading-modal/loading-modal';
+
 // // // Import menu pages
 // import {UniDetailPage} from '../uni-detail-page/uni-detail-page';
 // //

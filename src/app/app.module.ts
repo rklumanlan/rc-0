@@ -11,6 +11,8 @@ import { UniPage } from '../pages/uni-page/uni-page';
 import {GeolocationService} from './../providers/geolocation-service/geolocation-service'
 import {ConnectivityService} from './../providers/connectivity-service/connectivity-service';
 
+import {LoadingModal} from './../components/loading-modal/loading-modal';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -18,7 +20,8 @@ import {ConnectivityService} from './../providers/connectivity-service/connectiv
     MainPage,
     HomePage,
     LandingPage,
-    UniPage
+    UniPage,
+    LoadingModal
   ],
   imports: [
     IonicModule.forRoot(MyApp)
