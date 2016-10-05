@@ -1,11 +1,6 @@
 import {AlertController, ToastController} from 'ionic-angular';
-import {Injectable, Inject} from '@angular/core';
-import {Http} from '@angular/http';
+import {Injectable} from '@angular/core';
 import {ConnectivityService} from '../../providers/connectivity-service/connectivity-service';
-// import {TranslateService} from "ng2-translate/ng2-translate";
-
-
-import {Geolocation} from 'ionic-native';
 
 declare var google;
 
@@ -299,7 +294,7 @@ export class GeolocationService {
           callback(locationName);
       });
   }
-  
+
 
 
   // Location Map
@@ -328,47 +323,47 @@ export class GeolocationService {
     if (page === 'hospitals') {
       console.log('entered if');
       // mapcoords = {lat: parseFloat(detail.lat), lng: parseFloat(detail.lng)};
-      // img = 'img/pins/hospital.png';
+      // img = 'assets/img/pins/hospital.png';
       // mapElem = document.getElementById('hospital_map');
       console.log('Entered hospital map');
-      img = 'img/pins/hospital.png';
+      img = 'assets/img/pins/hospital.png';
       // this.map = new google.maps.Map(document.getElementById('hospital_map'), mapOptions );
     }
     else if (page === 'resto') {
       console.log('Entered Resto map');
-      img = 'img/pins/restaurant.png';
+      img = 'assets/img/pins/restaurant.png';
       // this.map = new google.maps.Map(document.getElementById('resto_map'), mapOptions );
 
     }
     else if (page === 'hotels') {
       console.log('Entered Hotel map');
-      img = 'img/pins/hotel.png';
+      img = 'assets/img/pins/hotel.png';
       // this.map = new google.maps.Map(document.getElementById('hotel_map'), mapOptions );
 
     }
     else if (page === 'malls') {
       console.log('Entered Mall map');
-      img = 'img/pins/mall.png';
+      img = 'assets/img/pins/mall.png';
       // this.map = new google.maps.Map(document.getElementById('mall_map'), mapOptions );
 
     }
     else if (page === 'supermarkets') {
       console.log('Entered Supermarket map');
-      img = 'img/pins/supermarket.png';
+      img = 'assets/img/pins/supermarket.png';
       // this.map = new google.maps.Map(document.getElementById('supmarket_map'), mapOptions );
     }
     else if (page === 'salons') {
       console.log('Entered salon map');
-      img = 'img/pins/salon.png';
+      img = 'assets/img/pins/salon.png';
       // this.map = new google.maps.Map(document.getElementById('salon_map'), mapOptions );
 
     }
     else {
       // mapcoords = {lat: parseFloat(detail.lat), lng: parseFloat(detail.lng)};
-      // img = 'img/pins/police.png';
+      // img = 'assets/img/pins/police.png';
       // mapElem = document.getElementById('police_map');
       console.log('Entered police map');
-      img = 'img/pins/police.png';
+      img = 'assets/img/pins/police.png';
       // this.map = new google.maps.Map(document.getElementById('police_map'), mapOptions );
     }
 

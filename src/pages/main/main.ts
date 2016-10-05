@@ -23,7 +23,6 @@ export class MainPage {
 
   public geolocation2: any = "";
   public details: any;
-  // public TabsPage:any = TabsPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public geolocationService: GeolocationService, public connectivity: ConnectivityService) {
     this.details = this.navParams.get('geoloc');
@@ -35,7 +34,6 @@ export class MainPage {
 
   autocomplete2(searchbar){
     console.log("autocomplete");
-    var me = this;
     var latlng:any = {};
     var autocomplete = new google.maps.places.Autocomplete(document.getElementById('geolocation2').getElementsByTagName('input')[0]);
     autocomplete.addListener('place_changed', function() {
@@ -65,7 +63,7 @@ export class MainPage {
     });
   }
 
-  showlatlong2(event) {
+  showlatlong2() {
     var me = this;
     var geoCoords: any = {};
     console.log("entered shwolatlong2");

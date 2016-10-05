@@ -28,6 +28,8 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
+    "cordova-network-information",
+    "cordova-sqlite-storage",
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [
@@ -37,6 +39,8 @@
       "version": "",
       "locator": "ios"
     }
+    ,
+    "android"
   ],
   "description": "rc-0: An Ionic project"
 }

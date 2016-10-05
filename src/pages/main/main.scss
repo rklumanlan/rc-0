@@ -218,15 +218,19 @@ button.fab{
 ion-fab{
   position: relative;
 }
+.fab-md {
+    box-shadow: 0 0px 6px 0 rgba(0, 0, 0, 0.14), 0 0px 5px rgba(0, 0, 0, 0.1);
+}
 
 // custom icon css end
-
 
 #mainBackDivMP{
   height: 100%;
   background-image: $bg-pattern;
 }
-
+ion-row.opt_row{
+  margin: 1% 0%;
+}
 .btn-menu-label {
     font-size: 100%;
     color: #636363;
@@ -270,6 +274,9 @@ div.geoloc_input{
 div.geoloc_btn button {
     height:100%;
 		margin: 0px;
+    color: #3493ff;
+    background: #fff;
+    font-size: 15pt;
 }
 
 div.geoloc_btn{
