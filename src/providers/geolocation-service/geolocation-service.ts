@@ -240,13 +240,13 @@ export class GeolocationService {
       // });
 
       // this.translate.get('Looks like there is a problem with your network connection. Try again later.').subscribe((res: string) => {
-      //   let toast = this.toastCtrl.create({
-      //     message: res,
-      //     duration: 5000,
-      //     position: 'bottom'
-      //   });
-      //   toast.present();
-      //
+        let toast = this.toastCtrl.create({
+          message: 'Looks like there is a problem with your network connection. Try again later.',
+          duration: 5000,
+          position: 'bottom'
+        });
+        toast.present();
+
       // });
 
     };

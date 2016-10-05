@@ -5,6 +5,8 @@ import {GeolocationService} from '../../providers/geolocation-service/geolocatio
 //
 import {MainPage} from '../main/main';
 
+// import { Geolocation } from 'ionic-native';
+
 declare var google;
 
 @Component({
@@ -13,11 +15,7 @@ declare var google;
 })
 
 export class LandingPage {
-
-  // rootPage: any = HomePage;
-
   public geolocation: any = "";
-  // public mainPage: any =  MainPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public geolocationService: GeolocationService) {
 
@@ -131,7 +129,7 @@ export class LandingPage {
   //
   locErrMsg(){
     // var me = this;
-    // this.geolocationService.locErrMsg();
+    this.geolocationService.locErrMsg();
     document.getElementById('lndBtnLoc').style.display = "inline";
     document.getElementById('lndLoaderLoc').style.display = "none";
   }

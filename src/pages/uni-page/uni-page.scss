@@ -6,6 +6,15 @@ button.back-button.disable-hover.bar-button.bar-button-md.back-button-md.bar-but
 .bg {
     background: url(../assets/img/mainBG/bg_pattern.png);
 }
+
+span.open{
+  color: #32db64;
+}
+
+span.close{
+  color: #f53d3d;
+}
+
 ion-select.drpdown {
     width: 30% !important;
     position: fixed;
