@@ -5,8 +5,6 @@ import {GeolocationService} from '../../providers/geolocation-service/geolocatio
 //
 import {MainPage} from '../main/main';
 
-import { Geolocation } from 'ionic-native';
-
 declare var google;
 
 @Component({
