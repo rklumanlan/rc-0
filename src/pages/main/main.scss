@@ -1,64 +1,245 @@
-main {
-
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../assets/fonts/icomoon.eot?zbkmp');
+  src:  url('../assets/fonts/icomoon.eot?zbkmp#iefix') format('embedded-opentype'),
+    url('../assets/fonts/icomoon.ttf?zbkmp') format('truetype'),
+    url('../assets/fonts/icomoon.woff?zbkmp') format('woff'),
+    url('../assets/fonts/icomoon.svg?zbkmp#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
-// .icoMoon-website:before {
-//     content: "\e909";
-//     font-size: 5em;
-// }
-ion-col.main-col{
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icoMoon{
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+}
+
+ion-icon.ion-md-jeep, ion-icon.ion-md-restaurant, ion-icon.ion-md-hotel, ion-icon.ion-md-mall, ion-icon.ion-md-salon, ion-icon.ion-md-hospital, ion-icon.ion-md-police, ion-icon.ion-md-supermarket {
+ font-size: 3.5em;
+}
+
+ion-icon.tab-button-icon.ion-md-jeep {
+    font-size: 1.5em;
+}
+
+.ion-md-hospital:before {
+  content: "\e900";
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ion-md-hotel:before {
+  content: "\e901";
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ion-md-jeep:before {
+  content: "\e902";
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ion-md-mall:before {
+  content: "\e903";
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ion-md-police:before {
+  content: "\e904";
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ion-md-restaurant:before {
+  content: "\e905";
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ion-md-salon:before {
+  content: "\e906";
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ion-md-supermarket:before {
+  content: "\e907";
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ion-md-marker:before {
+  content: "\e908";
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  color: #bbb;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ion-md-website:before {
+  content: "\e909";
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  color: #bbb;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ion-col.main-col {
     text-align: center;
 }
+
+ion-col.main-col ion-col{
+  padding: 0px;
+}
 // custom icon css
-// ion-icon.ion-md-jeep,ion-icon.ion-md-resto,ion-icon.ion-md-hotel,ion-icon.ion-md-mall,ion-icon.ion-md-supermarket,ion-icon.ion-md-salon,ion-icon.ion-md-police,ion-icon.ion-md-health{
-//   font-size:6em;
-// }
-//
-//
-// button.main_btn.disable-hover.button.button-clear.button-fab.button-clear-fab-top.button-icon-only {
-//     position: inherit;
-//     overflow: hidden;
-//     min-width: 0;
-//     width: 100%;
-//     height: auto;
-//     // border-radius: 50%;
-//     font-size: 3vw;
-//     // line-height: 56px;
-//     vertical-align: middle;
-//     background-clip: padding-box;
-//     margin: 5% 0%;
-//     box-shadow: none;
-// }
-// // ion-icon.more{
-// //   font-size: 4em;
-// // }
-// button.main_btn.disable-hover.button.button-clear.button-fab.button-clear-fab-top.button-icon-only ion-button-effect{
-//   display: none !important;
-//   background: rgba(255, 255, 255, 0) !important;
-// }
-// ion-button-effect{
-//   display:none !important;
-//   background: rgba(255, 255, 255, 0) !important;
-// }
+
+button.main_btn.disable-hover.button.button-default.button-fab.button-fab-top.button-primary.button-icon-only {
+    position: inherit;
+    overflow: hidden;
+    min-width: 0;
+    width: 76px;
+    height: 76px;
+    // border-radius: 50%;
+    // font-size: 4vw;
+    // line-height: 56px;
+    vertical-align: middle;
+    background-clip: padding-box;
+    // margin: 5% 0%;
+    box-shadow: none;
+}
+
+button.fab{
+ display:inline-block;
+}
+ion-fab{
+  position: relative;
+}
+.fab-md {
+    box-shadow: 0 0px 6px 0 rgba(0, 0, 0, 0.14), 0 0px 5px rgba(0, 0, 0, 0.1);
+}
 
 // custom icon css end
-
-
-//icomoon custom font icons
 
 #mainBackDivMP{
   height: 100%;
   background-image: $bg-pattern;
 }
-
+ion-row.opt_row{
+  margin: 1% 0%;
+}
 .btn-menu-label {
-    font-size: 12pt;
+    font-size: 100%;
     color: #636363;
-    white-space: pre-wrap;
+    // white-space: pre-wrap;
     font-weight: normal;
     text-transform: capitalize;
     text-align: center;
-    margin-top: 1%;
+    margin-top: 5%;
+    // text-align:center;
 }
 
 ion-row.enter {
@@ -93,6 +274,9 @@ div.geoloc_input{
 div.geoloc_btn button {
     height:100%;
 		margin: 0px;
+    color: #3493ff;
+    background: #fff;
+    font-size: 15pt;
 }
 
 div.geoloc_btn{

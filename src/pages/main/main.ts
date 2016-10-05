@@ -1,10 +1,14 @@
 import {Component} from '@angular/core';
 import {NavParams, NavController,AlertController} from 'ionic-angular';
 
+// import {SQLite} from "ionic-native";
+
 import {UniPage} from '../uni-page/uni-page';
 
 import {GeolocationService} from '../../providers/geolocation-service/geolocation-service';
 import {ConnectivityService} from '../../providers/connectivity-service/connectivity-service';
+// import {DataService} from '../../providers/data-service/data-service';
+
 
 
 
@@ -12,7 +16,8 @@ declare var google;
 
 @Component({
   selector: 'main',
-  templateUrl: 'main.html'
+  templateUrl: 'main.html',
+  // providers: [DataService],
 })
 export class MainPage {
 

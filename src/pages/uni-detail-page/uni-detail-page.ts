@@ -88,10 +88,10 @@ export class UniDetailPage {
       if (me.item_select.opening_hours!==undefined) {
         if (me.item_select.opening_hours.open_now!==undefined) {
           if (me.item_select.opening_hours.open_now === true) {
-            y.insertAdjacentHTML( 'beforeend', '<ion-label secondary>Open <ion-icon name="clock" role="img" class="ion-ios-clock-outline" aria-label="ios-clock-outline"></ion-icon></ion-label>');
+            y.insertAdjacentHTML( 'beforeend', '<span class="open">Open <ion-icon color="secondary" name="time" role="img" class="icon-ios icon-ios-secondary ion-ios-time-outline" ios="ios-time-outline" md="md-time" aria-label="ios-time"></ion-icon></span>');
           }
           else {
-            y.insertAdjacentHTML( 'beforeend', '<ion-label danger>Close <ion-icon name="clock" role="img" class="ion-ios-clock-outline" aria-label="ios-clock-outline"></ion-icon></ion-label>');
+            y.insertAdjacentHTML( 'beforeend', '<span class="close">Close <ion-icon color="danger" name="time" role="img" class="icon-ios icon-ios-danger ion-ios-time-outline" ios="ios-time-outline" md="md-time" aria-label="ios-time"></ion-icon></span>');
             ctr=ctr+1;
           }
         }
@@ -216,11 +216,11 @@ export class UniDetailPage {
     console.log(me.contact);
 
     if (me.contact !== undefined){
-      v.insertAdjacentHTML( 'beforeend', '<ion-icon primary name="ios-call" role="img" class="ion-ios-call" aria-label="ios-call"></ion-icon><span class="contact_no">&nbsp;&nbsp;'+ me.contact + '</span>');
+      v.insertAdjacentHTML( 'beforeend', '<ion-icon color="secondary" name="call" role="img" class="icon-ios icon-ios-secondary ion-ios-call" aria-label="ios-call" ios="ios-call" md="md-call"></ion-icon><span class="contact_no">&nbsp;&nbsp;'+ me.contact + '</span>');
     }
 
     else{
-      v.insertAdjacentHTML( 'beforeend', '<ion-icon primary name="ios-call" role="img" class="ion-ios-call" aria-label="ios-call" style="color:#B7B7B7;"></ion-icon><span style="color:#B7B7B7;">&nbsp;&nbsp;(No contact number provided.)</span>');
+      v.insertAdjacentHTML( 'beforeend', '<ion-icon color="danger" name="call" role="img" class="icon-ios icon-ios-danger ion-ios-call" aria-label="ios-call" ios="ios-call" md="md-call"></ion-icon><span style="color:#B7B7B7;">&nbsp;&nbsp;(No contact number provided.)</span>');
     }
   }
 

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {NavParams, NavController, AlertController} from 'ionic-angular';
 
 import {GeolocationService} from '../../providers/geolocation-service/geolocation-service';
-//
+
 import {MainPage} from '../main/main';
 
 declare var google;

@@ -1,3 +1,20 @@
+// back button
+button.back-button.disable-hover.bar-button.bar-button-md.back-button-md.bar-button-default.bar-button-default-md.show-back-button {
+    color: #fff;
+}
+// back button end
+.bg {
+    background: url(../assets/img/mainBG/bg_pattern.png);
+}
+
+span.open{
+  color: #32db64;
+}
+
+span.close{
+  color: #f53d3d;
+}
+
 ion-select.drpdown {
     width: 30% !important;
     position: fixed;
@@ -95,13 +112,14 @@ ul.itm_info_right {
 ul.itm_info_right li {
     margin: 1% 0%;
 }
-span.itm_type, span.itm_address, span.itm_hours, span.itm_distance {
+span.itm_type, span.itm_address, span.itm_distance {
     font-size: 10pt;
-    color: #797979;
+    // color: #797979;
     white-space: pre-line;
 }
 span.itm_rating{
   font-size:12pt;
+  color:#3493FF;
 }
 button.item ion-label {
     margin: 0;

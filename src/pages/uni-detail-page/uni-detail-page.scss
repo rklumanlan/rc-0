@@ -1,6 +1,9 @@
 button.unidetail_btn.disable-hover.button.button-clear.button-icon-only {
     width: 100%;
 }
+button.unidetail_btn{
+  font-size: 15pt;
+}
 
 // info windos css
 .gm-style-iw {
@@ -18,6 +21,9 @@ img.img_infowindow {
 span#operating_hours {
     font-size: 12pt;
 }
+span#resto_rating{
+  color:#3493FF;
+}
 p.review_text{
   width: 100%;
   word-break: break-word;
@@ -32,6 +38,7 @@ ion-list-header.list_review_header {
 }
 span.review_rating{
   float:right;
+  color:#3493FF;
 }
 ion-item.review_item_list.item {
     background: rgba(255, 255, 255, 0.48);

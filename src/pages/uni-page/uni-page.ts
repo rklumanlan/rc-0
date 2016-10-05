@@ -369,10 +369,10 @@ export class UniPage {
               console.log(y[a]);
               if (y[a].innerHTML=="") {
                 if (me.items[a].opening_hours.open_now === true) {
-                  y[a].insertAdjacentHTML( 'beforeend', '<ion-label secondary>Open <ion-icon name="clock" role="img" class="ion-ios-clock-outline" aria-label="ios-clock-outline"></ion-icon></ion-label>');
+                  y[a].insertAdjacentHTML( 'beforeend', '<span class="open">Open <ion-icon color="secondary" name="time" role="img" class="icon-ios icon-ios-secondary ion-ios-time-outline" ios="ios-time-outline" md="md-time" aria-label="ios-time"></ion-icon></span>');
                 }
                 else {
-                  y[a].insertAdjacentHTML( 'beforeend', '<ion-label danger>Close <ion-icon name="clock" role="img" class="ion-ios-clock-outline" aria-label="ios-clock-outline"></ion-icon></ion-label>');
+                  y[a].insertAdjacentHTML( 'beforeend', '<span class="close">Close <ion-icon color="danger" name="time" role="img" class="icon-ios icon-ios-danger ion-ios-time-outline" ios="ios-time-outline" md="md-time" aria-label="ios-time"></ion-icon></span>');
                 }
               }
 

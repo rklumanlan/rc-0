@@ -40,14 +40,14 @@
         <ion-col width-25></ion-col>
 
         <ion-col width-25 style="text-align:center;">
-          <button clear  [navPush]="UniMapPage" [navParams]="{item_coordinates:item_select,page:page}" class="unidetail_btn">
+          <button ion-button clear [navPush]="UniMapPage" [navParams]="{item_coordinates:item_select,page:page}" class="unidetail_btn">
             <ion-icon name="marker"></ion-icon>
           </button>
           <span style="font-size:9pt; color: #B7B7B7;">{{'Map' }}</span>
         </ion-col>
 
         <ion-col width-25 style="text-align:center;">
-          <button clear (click)="launchWebsite(item_select.website)" class="unidetail_btn">
+          <button ion-button clear (click)="launchWebsite(item_select.website)" class="unidetail_btn">
             <ion-icon name="website"></ion-icon>
           </button>
           <span style="font-size:9pt; color: #B7B7B7;">{{'Website' }}</span>

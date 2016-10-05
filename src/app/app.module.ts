@@ -10,6 +10,7 @@ import { UniMapPage } from '../pages/uni-map-page/uni-map-page';
 
 import {GeolocationService} from './../providers/geolocation-service/geolocation-service'
 import {ConnectivityService} from './../providers/connectivity-service/connectivity-service';
+import {DataService} from './../providers/data-service/data-service';
 
 
 
@@ -35,6 +36,6 @@ import {ConnectivityService} from './../providers/connectivity-service/connectiv
     UniDetailPage,
     UniMapPage
   ],
-  providers: [GeolocationService, ConnectivityService]
+  providers: [GeolocationService, ConnectivityService, DataService]
 })
 export class AppModule {}
