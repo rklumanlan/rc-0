@@ -4,10 +4,11 @@ import {NavParams, NavController,AlertController} from 'ionic-angular';
 // import {SQLite} from "ionic-native";
 
 import {UniPage} from '../uni-page/uni-page';
+import {TabsPage} from '../jeepney/tabs/tabs';
 
 import {GeolocationService} from '../../providers/geolocation-service/geolocation-service';
 import {ConnectivityService} from '../../providers/connectivity-service/connectivity-service';
-// import {DataService} from '../../providers/data-service/data-service';
+import {DataService} from '../../providers/data-service/data-service';
 
 
 
@@ -16,20 +17,21 @@ declare var google;
 
 @Component({
   selector: 'main',
-  templateUrl: 'main.html',
-  // providers: [DataService],
+  templateUrl: 'main.html'
 })
 export class MainPage {
 
   public geolocation2: any = "";
   public details: any;
+  public TabsPage:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public geolocationService: GeolocationService, public connectivity: ConnectivityService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public geolocationService: GeolocationService, public connectivity: ConnectivityService, public dataService: DataService) {
     this.details = this.navParams.get('geoloc');
     console.log(this.details);
     this.geolocation2 = this.details.locationName;
+    this.TabsPage = TabsPage;
 
-    // this.dataService.importDB();
+    this.dataService.importDB();
   }
 
   autocomplete2(searchbar){
