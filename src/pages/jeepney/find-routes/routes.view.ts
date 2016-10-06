@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Modal, NavController, AlertController, ModalController} from 'ionic-angular';
+// import {Modal, NavController, AlertController, ModalController} from 'ionic-angular';
 
 
 // import {MyModal} from '../../jeepney/find-routes/modal';

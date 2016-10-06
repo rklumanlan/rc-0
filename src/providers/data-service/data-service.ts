@@ -7,8 +7,8 @@ export class DataService {
   public storage: Storage;
   public jeeps: any;
   public points: any;
-  public hospital: any;
   public police: any;
+  public hospital: any;
   public db: any;
 
     constructor(){
@@ -18,9 +18,9 @@ export class DataService {
     importDB(){
       this.initDB();
       this.insertJeepsData();
-      // this.insertPointsData();
-      // this.insertPoliceData();
-      // this.insertHospitalData();
+      this.insertPointsData();
+      this.insertPoliceData();
+      this.insertHospitalData();
     }
 
     initDB(){
@@ -29,34 +29,66 @@ export class DataService {
         name: 'ACMaps.db',
         location: 'default' // the location field is required
         }).then(() => {
+          // Jeep table
           //drop table jeep
-          this.db.executeSql("DROP TABLE jeeps", {}).then(() => {
+          this.db.executeSql("DROP TABLE IF EXISTS jeeps", {}).then(() => {
             console.log("TABLE jeeps droped");
           }, (err) => {
-            console.error('Unable to execute sql: ', err);
+            console.error('Unable to Drop jeeps table ', err);
           });
 
           //create table jeeps
           this.db.executeSql('CREATE TABLE IF NOT EXISTS jeeps(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, color TEXT, image TEXT, route TEXT, route2 TEXT, category TEXT, coordi TEXT)', {}).then(() => {
             console.log("TABLE jeeps Created");
           }, (err) => {
-            console.error('Unable to execute sql: ', err);
+            console.error('Unable to create jeeps table: ', err);
           });
 
+          // Points table
           //drop table points
-          this.db.executeSql("DROP TABLE points", {}).then(() => {
+          this.db.executeSql("DROP TABLE IF EXISTS points", {}).then(() => {
             console.log("TABLE points droped");
           }, (err) => {
-            console.error('Unable to execute sql: ', err);
+            console.error('Unable to Drop points table: ', err);
           });
 
           //create table points
           this.db.executeSql('CREATE TABLE IF NOT EXISTS points (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT, lat TEXT, lng TEXT, tags TEXT, icon TEXT)', {}).then(() => {
-            console.log("TABLE jeeps Created");
+            console.log("TABLE points Created");
           }, (err) => {
-            console.error('Unable to execute sql: ', err);
+            console.error('Unable to create points table: ', err);
           });
 
+
+          // Police table
+          // drop table police
+          this.db.executeSql("DROP TABLE IF EXISTS police", {}).then(() => {
+            console.log("TABLE police droped");
+          }, (err) => {
+            console.error('Unable to Drop police table: ', err);
+          });
+
+          // create table police
+          this.db.executeSql('CREATE TABLE IF NOT EXISTS police (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, address TEXT, email TEXT, landline TEXT, mobile TEXT, lat TEXT, lng TEXT)', {}).then(() => {
+            console.log("TABLE police Created");
+          }, (err) => {
+            console.error('Unable to Create police table: ', err);
+          });
+
+          // Hospital table
+          //drop table hospital
+          this.db.executeSql("DROP TABLE IF EXISTS hospital", {}).then(() => {
+            console.log("TABLE hospital droped");
+          }, (err) => {
+            console.error('Unable to Drop hospital table: ', err);
+          });
+
+          //create table hospital
+          this.db.executeSql('CREATE TABLE IF NOT EXISTS hospital (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, address TEXT, email TEXT, landline TEXT, lat TEXT, lng TEXT)', {}).then(() => {
+            console.log("TABLE hospital Created");
+          }, (err) => {
+            console.error('Unable to create hospital table: ', err);
+          });
 
 
         }, (err) => {
@@ -65,44 +97,7 @@ export class DataService {
     }
 
 
-      // new rc-0 sql syntax - End -
 
-      // this.storage = new Storage(SqlStorage, {name:'ACMaps'});
-
-  //     this.storage.query("DROP TABLE jeeps");
-  //     this.storage.query('CREATE TABLE IF NOT EXISTS jeeps (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, color TEXT, image TEXT, route TEXT, route2 TEXT, category TEXT, coordi TEXT)').then((data) => {
-  //       console.log('yey');
-  //         console.log("TABLE CREATED -> " + JSON.stringify(data.res));
-  //     }, (error) => {
-  //         console.log(error);
-  //     });
-  //
-  //     this.storage.query("DROP TABLE points");
-  //
-  //     this.storage.query('CREATE TABLE IF NOT EXISTS points (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT, lat TEXT, lng TEXT, tags TEXT, icon TEXT)').then((data) => {
-  //       console.log('yey');
-  //         console.log("TABLE CREATED -> " + JSON.stringify(data.res));
-  //     }, (error) => {
-  //         console.log(error);
-  //     });
-  //
-  //     this.storage.query("DROP TABLE police");
-  //     this.storage.query('CREATE TABLE IF NOT EXISTS police (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, address TEXT, email TEXT, landline TEXT, mobile TEXT, lat TEXT, lng TEXT)').then((data) => {
-  //       console.log('police station table created');
-  //         console.log("TABLE CREATED -> " + JSON.stringify(data.res));
-  //     }, (error) => {
-  //         console.log(error);
-  //     });
-  //
-  //     this.storage.query("DROP TABLE hospital");
-  //     this.storage.query('CREATE TABLE IF NOT EXISTS hospital (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, address TEXT, email TEXT, landline TEXT, lat TEXT, lng TEXT)').then((data) => {
-  //       console.log('hospital table created');
-  //         console.log("TABLE CREATED -> " + JSON.stringify(data.res));
-  //     }, (error) => {
-  //         console.log(error);
-  //     });
-  //   }
-  //
     insertJeepsData(){
       this.jeeps = [{
         name: 'CHECK-POINT-HOLY',
@@ -232,437 +227,437 @@ export class DataService {
           this.db.executeSql("INSERT OR REPLACE INTO jeeps (id, name, color, image, route, route2, category, coordi) VALUES ('"+i+"','"+item.name+"','"+item.color+"','"+item.image+"','"+item.route+"','"+item.route2+"','"+item.category+"','"+ item.coordi+"')", {}).then(() => {
             console.log("insert jeeps data to table");
           }, (err) => {
-            console.error('Unable to execute sql: ', err);
+            console.error('Unable to insert jeeps data: ', err);
           });
-
-          // this.storage.query("INSERT OR REPLACE INTO jeeps (id, name, color, image, route, route2, category, coordi) VALUES ('"+i+"','"+item.name+"','"+item.color+"','"+item.image+"','"+item.route+"','"+item.route2+"','"+item.category+"','"+ item.coordi+"')").then((data) => {
-          //     console.log(JSON.stringify(data.res));
-          // }, (error) => {
-          //   console.log(error);
-          //     console.log("ERROR -> " + JSON.stringify(error.err));
-          // });
         }
-
-
-
       }, (err) => {
         console.error('Unable to open database: ', err);
       });
 
+    }
 
+    insertPointsData(){
+      this.points = [{
+        text: 'Republic Central Colleges',
+        lat: '15.13927',
+        lng: '120.59037',
+        tags: 'PANDAN-PAMPANG',
+        icon: 'img/pins/school.png'
+        },{
+        text: 'Holy Family Medical Center',
+        lat:'15.13990',
+        lng:'120.59450',
+        tags: 'CHECK-POINT-HOLY-HI-WAY,PANDAN-PAMPANG',
+        icon: 'img/pins/hospital.png'
+        },{
+        text: 'Citi Center',
+        lat: '15.15181',
+        lng: '120.60971',
+        tags: 'PANDAN-PAMPANG',
+        icon: 'img/pins/subd_brgy.png'
+        },{
+        text: 'Marquee Mall',
+        lat: '15.162432',
+        lng: '120.608675',
+        tags: 'PANDAN-PAMPANG',
+        icon: 'img/pins/mall.png'
+        },{
+        text: 'Angeles City Hall',
+        lat: '15.16451',
+        lng: '120.60811',
+        tags: 'PANDAN-PAMPANG',
+        icon: 'img/pins/cityhall.png'
+        },{
+        text: 'SM City Clark',
+        lat:'15.16834',
+        lng:'120.58275',
+        tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY',
+        icon: 'img/pins/mall.png'
+        },{
+        text: 'Main Gate Terminal',
+        lat:'15.16840',
+        lng:'120.58442',
+        tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY',
+        icon: 'img/pins/terminal.png'
+        },{
+        text: 'Diamond Subdivision',
+        lat: '15.16253',
+        lng: '120.59107',
+        tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY',
+        icon: 'img/pins/subd_brgy.png'
+        },{
+        text: "Saver\'s Mall",
+        lat: '15.16242',
+        lng: '120.59110',
+        tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY',
+        icon: 'img/pins/mall.png'
+        },{
+        text: 'Immaculate Concepcion Parish',
+        lat: '15.15900',
+        lng: '120.59201',
+        tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY',
+        icon: 'img/pins/church.png'
+        },{
+        text: 'Systems Plus College Foundation',
+        lat: '15.15828',
+        lng: '120.59222',
+        tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY',
+        icon: 'img/pins/school.png'
+        },{
+        text: 'Marisol',
+        lat:'15.15293',
+        lng:'120.59217',
+        tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY',
+        icon: 'img/pins/subd_brgy.png'
+        },{
+        text: 'Lourdes North West',
+        lat:'15.14186',
+        lng:'120.58799',
+        tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY',
+        icon: 'img/pins/terminal.png'
+        },{
+        text: 'Bancal',
+        lat: '15.15346',
+        lng: '120.58335',
+        tags: 'CHECK-POINT-HENSONVILLE-HOLY',
+        icon: 'img/pins/subd_brgy.png'
+        },{
+        text: 'Jenra Mall',
+        lat: '15.13622',
+        lng: '120.58805',
+        tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY,CHECK-POINT-HENSONVILLE-HOLY,MARISOL-PAMPANG,VILLA-PAMPANG',
+        icon: 'img/pins/mall.png'
+        },{
+        text: 'Nepo Mall',
+        lat :'15.13567',
+        lng :'img/pins/mall.png',
+        tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY,CHECK-POINT-HENSONVILLE-HOLY,MARISOL-PAMPANG,VILLA-PAMPANG',
+        icon: 'img/pins/mall.png'
+        },{
+        text: 'Sacred Heart Medical Center',
+        lat :'15.12493',
+        lng :'120.59831',
+        tags: 'VILLA-PAMPANG',
+        icon: 'img/pins/hospital.png'
+        },{
+        text: 'Holy Angel University',
+        lat: '15.13417',
+        lng: '120.59130',
+        tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY,CHECK-POINT-HENSONVILLE-HOLY',
+        icon: 'img/pins/school.png'
+        },{
+        text: 'Holy Rosary Parish Church',
+        lat: '15.13483',
+        lng: '120.59063',
+        tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY,CHECK-POINT-HENSONVILLE-HOLY',
+        icon: 'img/pins/church.png'
+        },{
+        text: 'The Medical City Angeles',
+        lat:'15.13834',
+        lng:'120.59335',
+        tags: 'CHECK-POINT-HOLY-HI-WAY,PANDAN-PAMPANG',
+        icon: 'img/pins/hospital.png'
+        },{
+        text: 'Angeles University Foundation Medical Center',
+        lat: '15.14527',
+        lng: '120.59539',
+        tags: 'CHECK-POINT-HOLY-HI-WAY,MARISOL-PAMPANG',
+        icon: 'img/pins/hospital.png'
+        },{
+        text: 'Angeles University Foundation',
+        lat: '15.14544',
+        lng: '120.59530',
+        tags: 'CHECK-POINT-HOLY-HI-WAY,MARISOL-PAMPANG',
+        icon: 'img/pins/school.png'
+        },{
+        text: 'City College of Angeles',
+        lat: '15.14917',
+        lng: '120.57793',
+        tags: 'SAPANG BATO-ANGELES',
+        icon: 'img/pins/school.png'
+        },{
+        text: 'Carmenville',
+        lat:'15.14539',
+        lng: '120.56643',
+        tags:'SAPANG BATO-ANGELES',
+        icon: 'img/pins/subd_brgy.png'
+        },{
+        text: 'Timog Park Gate 1',
+        lat:'15.14505',
+        lng:'120.56465',
+        tags:'SAPANG BATO-ANGELES',
+        icon: 'img/pins/subd_brgy.png'
+        },{
+        text: 'Cuayan',
+        lat:'15.14449',
+        lng:'120.55945',
+        tags:'SAPANG BATO-ANGELES',
+        icon: 'img/pins/subd_brgy.png'
+        },{
+        text: 'Timog Park Gate 2',
+        lat:'15.14776',
+        lng: '120.559465',
+        tags:'SAPANG BATO-ANGELES',
+        icon: 'img/pins/subd_brgy.png'
+        },{
+        text: 'Timog Park Gate 3',
+        lat:'15.15069',
+        lng:'120.55945',
+        tags:'SAPANG BATO-ANGELES',
+        icon: 'img/pins/subd_brgy.png'
+        },{
+        text: 'Friendship Plaza',
+        lat:'15.15091',
+        lng:'120.55946',
+        tags:'SAPANG BATO-ANGELES',
+        icon: 'img/pins/subd_brgy.png'
+        },{
+        text: 'Anunas',
+        lat:'15.153712',
+        lng:'120.560274',
+        tags:'SAPANG BATO-ANGELES',
+        icon: 'img/pins/subd_brgy.png'
+        },{
+        text: 'Villa Sol',
+        lat:'15.15803',
+        lng: '120.55970',
+        tags:'SAPANG BATO-ANGELES',
+        icon: 'img/pins/subd_brgy.png'
+        },{
+        text: 'Friendship',
+        lat:'15.16304',
+        lng:'120.55475',
+        tags:'SAPANG BATO-ANGELES',
+        icon: 'img/pins/terminal.png'
+        },{
+        text: 'Transfer',
+        lat:'15.16258',
+        lng:'120.55349',
+        tags:'SAPANG BATO-ANGELES',
+        icon: 'img/pins/terminal.png'
+        },{
+        text: 'Margot',
+        lat:'15.17078',
+        lng:'120.53471',
+        tags:'SAPANG BATO-ANGELES',
+        icon: 'img/pins/subd_brgy.png'
+        },{
+        text: 'Sapang Bato',
+        lat:'15.16966',
+        lng:'120.51317',
+        tags:'SAPANG BATO-ANGELES',
+        icon: 'img/pins/subd_brgy.png'
+        },{
+        text: 'Rafael Lazatin Memorial Medical Center',
+        lat:'15.14630',
+        lng:'120.58128',
+        tags: 'PAMPANG-HOLY',
+        icon: 'img/pins/hospital.png'
+        },{
+        text: 'Dr. Amando L. Garcia Medical Center, Inc.',
+        lat:'15.14254',
+        lng:'120.58971',
+        tags: 'MARISOL-PAMPANG',
+        icon: 'img/pins/hospital.png'
+        },{
+        text: 'Angeles Medical Center Inc.',
+        lat:'15.14124',
+        lng:'120.58907',
+        tags: 'MARISOL-PAMPANG',
+        icon: 'img/pins/hospital.png'
+      }];
 
+      this.db.openDatabase({
+        name: 'ACMaps.db',
+        location: 'default' // the location field is required
+      }).then(() => {
+        //inset pointsdata
+        var x,y,item2;
 
+        for(x=0, y=this.points.length; x < y; x++){
+          item2=this.points[x];
 
-
+          this.db.executeSql('INSERT OR REPLACE INTO points (id, text, lat, lng, tags, icon) VALUES ("'+x+'","'+item2.text+'","'+item2.lat+'","'+item2.lng+'","'+item2.tags+'","'+item2.icon+'")', {}).then(() => {
+            console.log("insert points data to table");
+          }, (err) => {
+            console.error('Unable to insert points data: ', err);
+          });
+        }
+      }, (err) => {
+        console.error('Unable to open database: ', err);
+      });
 
     }
-  //
-  //   insertPointsData(){
-  //
-  //     this.points = [{
-  //       text: 'Republic Central Colleges',
-  //       lat: '15.13927',
-  //       lng: '120.59037',
-  //       tags: 'PANDAN-PAMPANG',
-  //       icon: 'img/pins/school.png'
-  //       },{
-  //       text: 'Holy Family Medical Center',
-  //       lat:'15.13990',
-  //       lng:'120.59450',
-  //       tags: 'CHECK-POINT-HOLY-HI-WAY,PANDAN-PAMPANG',
-  //       icon: 'img/pins/hospital.png'
-  //       },{
-  //       text: 'Citi Center',
-  //       lat: '15.15181',
-  //       lng: '120.60971',
-  //       tags: 'PANDAN-PAMPANG',
-  //       icon: 'img/pins/subd_brgy.png'
-  //       },{
-  //       text: 'Marquee Mall',
-  //       lat: '15.162432',
-  //       lng: '120.608675',
-  //       tags: 'PANDAN-PAMPANG',
-  //       icon: 'img/pins/mall.png'
-  //       },{
-  //       text: 'Angeles City Hall',
-  //       lat: '15.16451',
-  //       lng: '120.60811',
-  //       tags: 'PANDAN-PAMPANG',
-  //       icon: 'img/pins/cityhall.png'
-  //       },{
-  //       text: 'SM City Clark',
-  //       lat:'15.16834',
-  //       lng:'120.58275',
-  //       tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY',
-  //       icon: 'img/pins/mall.png'
-  //       },{
-  //       text: 'Main Gate Terminal',
-  //       lat:'15.16840',
-  //       lng:'120.58442',
-  //       tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY',
-  //       icon: 'img/pins/terminal.png'
-  //       },{
-  //       text: 'Diamond Subdivision',
-  //       lat: '15.16253',
-  //       lng: '120.59107',
-  //       tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY',
-  //       icon: 'img/pins/subd_brgy.png'
-  //       },{
-  //       text: "Saver\'s Mall",
-  //       lat: '15.16242',
-  //       lng: '120.59110',
-  //       tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY',
-  //       icon: 'img/pins/mall.png'
-  //       },{
-  //       text: 'Immaculate Concepcion Parish',
-  //       lat: '15.15900',
-  //       lng: '120.59201',
-  //       tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY',
-  //       icon: 'img/pins/church.png'
-  //       },{
-  //       text: 'Systems Plus College Foundation',
-  //       lat: '15.15828',
-  //       lng: '120.59222',
-  //       tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY',
-  //       icon: 'img/pins/school.png'
-  //       },{
-  //       text: 'Marisol',
-  //       lat:'15.15293',
-  //       lng:'120.59217',
-  //       tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY',
-  //       icon: 'img/pins/subd_brgy.png'
-  //       },{
-  //       text: 'Lourdes North West',
-  //       lat:'15.14186',
-  //       lng:'120.58799',
-  //       tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY',
-  //       icon: 'img/pins/terminal.png'
-  //       },{
-  //       text: 'Bancal',
-  //       lat: '15.15346',
-  //       lng: '120.58335',
-  //       tags: 'CHECK-POINT-HENSONVILLE-HOLY',
-  //       icon: 'img/pins/subd_brgy.png'
-  //       },{
-  //       text: 'Jenra Mall',
-  //       lat: '15.13622',
-  //       lng: '120.58805',
-  //       tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY,CHECK-POINT-HENSONVILLE-HOLY,MARISOL-PAMPANG,VILLA-PAMPANG',
-  //       icon: 'img/pins/mall.png'
-  //       },{
-  //       text: 'Nepo Mall',
-  //       lat :'15.13567',
-  //       lng :'img/pins/mall.png',
-  //       tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY,CHECK-POINT-HENSONVILLE-HOLY,MARISOL-PAMPANG,VILLA-PAMPANG',
-  //       icon: 'img/pins/mall.png'
-  //       },{
-  //       text: 'Sacred Heart Medical Center',
-  //       lat :'15.12493',
-  //       lng :'120.59831',
-  //       tags: 'VILLA-PAMPANG',
-  //       icon: 'img/pins/hospital.png'
-  //       },{
-  //       text: 'Holy Angel University',
-  //       lat: '15.13417',
-  //       lng: '120.59130',
-  //       tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY,CHECK-POINT-HENSONVILLE-HOLY',
-  //       icon: 'img/pins/school.png'
-  //       },{
-  //       text: 'Holy Rosary Parish Church',
-  //       lat: '15.13483',
-  //       lng: '120.59063',
-  //       tags: 'CHECK-POINT-HOLY-HI-WAY,CHECK-POINT-HOLY,CHECK-POINT-HENSONVILLE-HOLY',
-  //       icon: 'img/pins/church.png'
-  //       },{
-  //       text: 'The Medical City Angeles',
-  //       lat:'15.13834',
-  //       lng:'120.59335',
-  //       tags: 'CHECK-POINT-HOLY-HI-WAY,PANDAN-PAMPANG',
-  //       icon: 'img/pins/hospital.png'
-  //       },{
-  //       text: 'Angeles University Foundation Medical Center',
-  //       lat: '15.14527',
-  //       lng: '120.59539',
-  //       tags: 'CHECK-POINT-HOLY-HI-WAY,MARISOL-PAMPANG',
-  //       icon: 'img/pins/hospital.png'
-  //       },{
-  //       text: 'Angeles University Foundation',
-  //       lat: '15.14544',
-  //       lng: '120.59530',
-  //       tags: 'CHECK-POINT-HOLY-HI-WAY,MARISOL-PAMPANG',
-  //       icon: 'img/pins/school.png'
-  //       },{
-  //       text: 'City College of Angeles',
-  //       lat: '15.14917',
-  //       lng: '120.57793',
-  //       tags: 'SAPANG BATO-ANGELES',
-  //       icon: 'img/pins/school.png'
-  //       },{
-  //       text: 'Carmenville',
-  //       lat:'15.14539',
-  //       lng: '120.56643',
-  //       tags:'SAPANG BATO-ANGELES',
-  //       icon: 'img/pins/subd_brgy.png'
-  //       },{
-  //       text: 'Timog Park Gate 1',
-  //       lat:'15.14505',
-  //       lng:'120.56465',
-  //       tags:'SAPANG BATO-ANGELES',
-  //       icon: 'img/pins/subd_brgy.png'
-  //       },{
-  //       text: 'Cuayan',
-  //       lat:'15.14449',
-  //       lng:'120.55945',
-  //       tags:'SAPANG BATO-ANGELES',
-  //       icon: 'img/pins/subd_brgy.png'
-  //       },{
-  //       text: 'Timog Park Gate 2',
-  //       lat:'15.14776',
-  //       lng: '120.559465',
-  //       tags:'SAPANG BATO-ANGELES',
-  //       icon: 'img/pins/subd_brgy.png'
-  //       },{
-  //       text: 'Timog Park Gate 3',
-  //       lat:'15.15069',
-  //       lng:'120.55945',
-  //       tags:'SAPANG BATO-ANGELES',
-  //       icon: 'img/pins/subd_brgy.png'
-  //       },{
-  //       text: 'Friendship Plaza',
-  //       lat:'15.15091',
-  //       lng:'120.55946',
-  //       tags:'SAPANG BATO-ANGELES',
-  //       icon: 'img/pins/subd_brgy.png'
-  //       },{
-  //       text: 'Anunas',
-  //       lat:'15.153712',
-  //       lng:'120.560274',
-  //       tags:'SAPANG BATO-ANGELES',
-  //       icon: 'img/pins/subd_brgy.png'
-  //       },{
-  //       text: 'Villa Sol',
-  //       lat:'15.15803',
-  //       lng: '120.55970',
-  //       tags:'SAPANG BATO-ANGELES',
-  //       icon: 'img/pins/subd_brgy.png'
-  //       },{
-  //       text: 'Friendship',
-  //       lat:'15.16304',
-  //       lng:'120.55475',
-  //       tags:'SAPANG BATO-ANGELES',
-  //       icon: 'img/pins/terminal.png'
-  //       },{
-  //       text: 'Transfer',
-  //       lat:'15.16258',
-  //       lng:'120.55349',
-  //       tags:'SAPANG BATO-ANGELES',
-  //       icon: 'img/pins/terminal.png'
-  //       },{
-  //       text: 'Margot',
-  //       lat:'15.17078',
-  //       lng:'120.53471',
-  //       tags:'SAPANG BATO-ANGELES',
-  //       icon: 'img/pins/subd_brgy.png'
-  //       },{
-  //       text: 'Sapang Bato',
-  //       lat:'15.16966',
-  //       lng:'120.51317',
-  //       tags:'SAPANG BATO-ANGELES',
-  //       icon: 'img/pins/subd_brgy.png'
-  //       },{
-  //       text: 'Rafael Lazatin Memorial Medical Center',
-  //       lat:'15.14630',
-  //       lng:'120.58128',
-  //       tags: 'PAMPANG-HOLY',
-  //       icon: 'img/pins/hospital.png'
-  //       },{
-  //       text: 'Dr. Amando L. Garcia Medical Center, Inc.',
-  //       lat:'15.14254',
-  //       lng:'120.58971',
-  //       tags: 'MARISOL-PAMPANG',
-  //       icon: 'img/pins/hospital.png'
-  //       },{
-  //       text: 'Angeles Medical Center Inc.',
-  //       lat:'15.14124',
-  //       lng:'120.58907',
-  //       tags: 'MARISOL-PAMPANG',
-  //       icon: 'img/pins/hospital.png'
-  //     }];
-  //
-  //     var x,y,item2;
-  //
-  //     // this.storage.query("delete from points");
-  //
-  //     for(x=0, y=this.points.length; x < y; x++){
-  //       item2=this.points[x];
-  //       // console.log(this.points[x]);
-  //
-  //       // this.storage.query("INSERT OR REPLACE INTO points (id, text, lat, lng, tags,icon) VALUES ('"+x+"','"+item2.text+"','"+item2.lat+"','"+item2.lng+"','"+item2.tags+"','"+item2.icon+"')").then((data) => {
-  //       //     console.log(JSON.stringify(data.res));
-  //       // }, (error) => {
-  //       //   console.log(error);
-  //       //     console.log("ERROR -> " + JSON.stringify(error.err));
-  //       // });
-  //
-  //         this.storage.query('INSERT OR REPLACE INTO points (id, text, lat, lng, tags,icon) VALUES ("'+x+'","'+item2.text+'","'+item2.lat+'","'+item2.lng+'","'+item2.tags+'","'+item2.icon+'")').then((data) => {
-  //             // console.log(data);
-  //         }, (error) => {
-  //           console.log(error);
-  //             console.log("ERROR -> " + JSON.stringify(error.err));
-  //         });
-  //
-  //     }
-  //   }
-  //
-  //     insertPoliceData(){
-  //       this.police = [{
-  //         name: 'Police Station No. 1',
-  //         address: 'Sto. Rosario St., Angeles City',
-  //         email: 'acpo_station1@yahoo.com',
-  //         landline: '(63 45) 322-7742',
-  //         mobile: '0932-252-5056',
-  //         lat: '15.13454299',
-  //         lng: '120.59104002'
-  //       },{
-  //         name: 'Police Station No. 2',
-  //         address: 'San Francisco Street, Barangay Sta. Teresita Angeles City',
-  //         email: 'acpo_cs2@yahoo.com',
-  //         landline: '(63 45)322-3872',
-  //         mobile: '0932-303-7127',
-  //         lat: '15.152118',
-  //         lng: '120.585225'
-  //       },{
-  //         name: 'Police Station No. 3',
-  //         address: 'Magalang Road, Barangay Pulung Maragul, Angeles City',
-  //         email: 'ps3_opn@yahoo.com',
-  //         landline: '(63 45)322-2146',
-  //         mobile: '0932-252-5037 / 9017-474-6996',
-  //         lat: '15.160938',
-  //         lng: '120.608948'
-  //       },{
-  //         name: 'Police Station No. 4',
-  //         address: 'Constine Street, corner MA Roxas Avenue, Balibago, Angeles City',
-  //         email: 'acpo_ps4@yahoo.com',
-  //         landline: '(63 45)322-2146',
-  //         mobile: '0932-252-8670',
-  //         lat: '15.169390',
-  //         lng: '120.585166'
-  //       },{
-  //         name: 'Police Station No. 5',
-  //         address: 'Barangay Cuayan, Angeles City',
-  //         email: 'acpo_ps5@yahoo.com',
-  //         landline: '(63 45)322-9188',
-  //         mobile: '0932-610-2042',
-  //         lat: '15.144749',
-  //         lng: '120.559218'
-  //       },{
-  //         name: 'Police Station No. 6',
-  //         address: 'Barangay Lourdes Sur East, McArthur Highway, Angeles City',
-  //         email: 'acpo_ps6@yahoo.com',
-  //         landline: '(63 45)322-8256',
-  //         mobile: '0933-610-2043 / 0933-510-6691',
-  //         lat: '15.146031',
-  //         lng: '120.594740'
-  //       }];
-  //       var a,b,item3;
-  //
-  //       for(a=0, b=this.police.length; a < b; a++){
-  //         item3=this.police[a];
-  //
-  //         this.storage.query("INSERT OR REPLACE INTO police (id, name, address, email, landline, mobile, lat, lng) VALUES ('"+a+"','"+item3.name+"','"+item3.address+"','"+item3.email+"','"+item3.landline+"','"+item3.mobile+"','"+item3.lat+"','"+item3.lng+"')").then((data) => {
-  //             console.log(JSON.stringify(data.res));
-  //         }, (error) => {
-  //           console.log(error);
-  //             console.log("ERROR -> " + JSON.stringify(error.err));
-  //         });
-  //       }
-  //   }
-  //   insertHospitalData(){
-  //     this.hospital = [{
-  //       name: 'Angeles Medical Center',
-  //       address: 'Rizal Street, Angeles City',
-  //       email: 'angeles_medical_center@yahoo.com',
-  //       landline: '(63 45)877-7150 / 322-4632 / 887-3139',
-  //       lat: '15.141437',
-  //       lng: '120.589142'
-  //     },{
-  //       name: 'Angeles University Medical Center',
-  //       address: 'McArthur Highway, Angeles City',
-  //       email: 'alvin@auf.edu.ph',
-  //       landline: '(63 45)322-8876 / 8880 / 888-22668',
-  //       lat: '15.145463',
-  //       lng: '120.594934'
-  //     },{
-  //       name: 'Holy Family Medical Center',
-  //       address: '179 Santo Entierro Street, Angeles City',
-  //       email: 'Email address not available.',
-  //       landline: '(63 45)888-6620 / 322-3623',
-  //       lat: '15.140357',
-  //       lng: '120.594385'
-  //     },{
-  //       name: 'Rafael Lazatin Memorial Medical Center',
-  //       address: 'Visitacion St., cor Pampang Road, Angeles City',
-  //       email: 'Email address not available.',
-  //       landline: '(63 45)322-4495 / 1222 / 887-4133',
-  //       lat: '15.146144',
-  //       lng: '120.580873'
-  //     },{
-  //       name: 'Mother of Perpetual Help Hospital',
-  //       address: '2257 Santo Entierro Street, Angeles City',
-  //       email: 'Email address not available.',
-  //       landline: '(63 45)888-1655',
-  //       lat: '15.141261',
-  //       lng: '120.595708'
-  //     },{
-  //       name: 'Dr. Amando L. Garcia Medical Center, Inc.',
-  //       address: '648 Rizal Street, Angeles City',
-  //       email: 'Email address not available.',
-  //       landline: '(045)322-0165',
-  //       lat: '15.142835',
-  //       lng: '120.589643'
-  //     },{
-  //       name: 'St. Catherine Of Alexandria',
-  //       address: 'Rizal Street, Angeles City',
-  //       email: 'Email address not available.',
-  //       landline: '(045)888-7209',
-  //       lat: '15.135523',
-  //       lng: '120.585090'
-  //     }];
-  //     var c,d,item4;
-  //
-  //     for(c=0, d=this.hospital.length; c < d; c++){
-  //       item4=this.hospital[c];
-  //
-  //       this.storage.query("INSERT OR REPLACE INTO hospital (id, name, address, email, landline, lat, lng) VALUES ('"+c+"','"+item4.name+"','"+item4.address+"','"+item4.email+"','"+item4.landline+"','"+item4.lat+"','"+item4.lng+"')").then((data) => {
-  //           console.log(JSON.stringify(data.res));
-  //       }, (error) => {
-  //         console.log(error);
-  //           console.log("ERROR -> " + JSON.stringify(error.err));
-  //       });
-  //     }
-  // }
-  //
-  //   getAllData(ctr) {
-  //     return this.storage.query("SELECT * FROM jeeps WHERE category = '"+ctr+"'");
-  //   }
-  //
-  //   getJeepDetails(ctr) {
-  //     return this.storage.query('SELECT * FROM jeeps WHERE name = "'+ctr+'"');
-  //   }
-  //
-  //   getPoints(){
-  //     return this.storage.query("SELECT * FROM points ORDER BY text ASC");
-  //   }
-  //
-  //   getPointsOrigin(ctr){
-  //     return this.storage.query('SELECT * FROM points WHERE text = "'+ctr+'"');
-  //   }
-  //
-  //   getPoliceDetails(ctr){
-  //     return this.storage.query("SELECT * FROM police");
-  //   }
-  //   getHospitalDetails(ctr){
-  //     return this.storage.query("SELECT * FROM hospital");
-  //   }
+
+
+    insertPoliceData(){
+      this.police = [{
+        name: 'Police Station No. 1',
+        address: 'Sto. Rosario St., Angeles City',
+        email: 'acpo_station1@yahoo.com',
+        landline: '(63 45) 322-7742',
+        mobile: '0932-252-5056',
+        lat: '15.13454299',
+        lng: '120.59104002'
+      },{
+        name: 'Police Station No. 2',
+        address: 'San Francisco Street, Barangay Sta. Teresita Angeles City',
+        email: 'acpo_cs2@yahoo.com',
+        landline: '(63 45)322-3872',
+        mobile: '0932-303-7127',
+        lat: '15.152118',
+        lng: '120.585225'
+      },{
+        name: 'Police Station No. 3',
+        address: 'Magalang Road, Barangay Pulung Maragul, Angeles City',
+        email: 'ps3_opn@yahoo.com',
+        landline: '(63 45)322-2146',
+        mobile: '0932-252-5037 / 9017-474-6996',
+        lat: '15.160938',
+        lng: '120.608948'
+      },{
+        name: 'Police Station No. 4',
+        address: 'Constine Street, corner MA Roxas Avenue, Balibago, Angeles City',
+        email: 'acpo_ps4@yahoo.com',
+        landline: '(63 45)322-2146',
+        mobile: '0932-252-8670',
+        lat: '15.169390',
+        lng: '120.585166'
+      },{
+        name: 'Police Station No. 5',
+        address: 'Barangay Cuayan, Angeles City',
+        email: 'acpo_ps5@yahoo.com',
+        landline: '(63 45)322-9188',
+        mobile: '0932-610-2042',
+        lat: '15.144749',
+        lng: '120.559218'
+      },{
+        name: 'Police Station No. 6',
+        address: 'Barangay Lourdes Sur East, McArthur Highway, Angeles City',
+        email: 'acpo_ps6@yahoo.com',
+        landline: '(63 45)322-8256',
+        mobile: '0933-610-2043 / 0933-510-6691',
+        lat: '15.146031',
+        lng: '120.594740'
+      }];
+
+      this.db.openDatabase({
+        name: 'ACMaps.db',
+        location: 'default' // the location field is required
+      }).then(() => {
+        //inset policedata
+        var a,b,item3;
+
+        for(a=0, b=this.police.length; a < b; a++){
+          item3=this.points[a];
+
+          this.db.executeSql('INSERT OR REPLACE INTO hospital (id, name, address, email, landline, lat, lng) VALUES ("'+a+'","'+item3.name+'","'+item3.address+'","'+item3.email+'","'+item3.landline+'","'+item3.lat+'","'+item3.lng+'")', {}).then(() => {
+            console.log("insert police data to table");
+          }, (err) => {
+            console.error('Unable to insert police data: ', err);
+          });
+        }
+      }, (err) => {
+        console.error('Unable to open database: ', err);
+      });
+    }
+
+    insertHospitalData(){
+      this.hospital = [{
+        name: 'Angeles Medical Center',
+        address: 'Rizal Street, Angeles City',
+        email: 'angeles_medical_center@yahoo.com',
+        landline: '(63 45)877-7150 / 322-4632 / 887-3139',
+        lat: '15.141437',
+        lng: '120.589142'
+      },{
+        name: 'Angeles University Medical Center',
+        address: 'McArthur Highway, Angeles City',
+        email: 'alvin@auf.edu.ph',
+        landline: '(63 45)322-8876 / 8880 / 888-22668',
+        lat: '15.145463',
+        lng: '120.594934'
+      },{
+        name: 'Holy Family Medical Center',
+        address: '179 Santo Entierro Street, Angeles City',
+        email: 'Email address not available.',
+        landline: '(63 45)888-6620 / 322-3623',
+        lat: '15.140357',
+        lng: '120.594385'
+      },{
+        name: 'Rafael Lazatin Memorial Medical Center',
+        address: 'Visitacion St., cor Pampang Road, Angeles City',
+        email: 'Email address not available.',
+        landline: '(63 45)322-4495 / 1222 / 887-4133',
+        lat: '15.146144',
+        lng: '120.580873'
+      },{
+        name: 'Mother of Perpetual Help Hospital',
+        address: '2257 Santo Entierro Street, Angeles City',
+        email: 'Email address not available.',
+        landline: '(63 45)888-1655',
+        lat: '15.141261',
+        lng: '120.595708'
+      },{
+        name: 'Dr. Amando L. Garcia Medical Center, Inc.',
+        address: '648 Rizal Street, Angeles City',
+        email: 'Email address not available.',
+        landline: '(045)322-0165',
+        lat: '15.142835',
+        lng: '120.589643'
+      },{
+        name: 'St. Catherine Of Alexandria',
+        address: 'Rizal Street, Angeles City',
+        email: 'Email address not available.',
+        landline: '(045)888-7209',
+        lat: '15.135523',
+        lng: '120.585090'
+      }];
+
+      this.db.openDatabase({
+        name: 'ACMaps.db',
+        location: 'default' // the location field is required
+      }).then(() => {
+      //inset hospitaldata
+      var c,d,item4;
+
+      for(c=0, d=this.hospital.length; c < d; c++){
+        item4=this.hospital[c];
+
+        this.db.executeSql("INSERT OR REPLACE INTO hospital (id, name, address, email, landline, lat, lng) VALUES ('"+c+"','"+item4.name+"','"+item4.address+"','"+item4.email+"','"+item4.landline+"','"+item4.lat+"','"+item4.lng+"')", {}).then(() => {
+          console.log("insert hospital data to table");
+        }, (err) => {
+          console.error('Unable to insert hospital data: ', err);
+        });
+      }
+    }, (err) => {
+      console.error('Unable to open database: ', err);
+    });
+
+  }
+
+
+    getAllData(ctr) {
+      return this.db.query("SELECT * FROM jeeps WHERE category = '"+ctr+"'");
+    }
+
+    getJeepDetails(ctr) {
+      return this.db.query('SELECT * FROM jeeps WHERE name = "'+ctr+'"');
+    }
+
+    getPoints(){
+      return this.db.query("SELECT * FROM points ORDER BY text ASC");
+    }
+
+    getPointsOrigin(ctr){
+      return this.db.query('SELECT * FROM points WHERE text = "'+ctr+'"');
+    }
+
+    getPoliceDetails(ctr){
+      return this.db.query("SELECT * FROM police");
+    }
+    getHospitalDetails(ctr){
+      return this.db.query("SELECT * FROM hospital");
+    }
 
 }
