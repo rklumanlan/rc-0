@@ -253,6 +253,7 @@ span.icoMoon.icoMoon-marker {
   top: 0; left: 0; bottom: 0; right: 0;
   height: 85px;
   text-align: center;
+  background-color: #3493FF;
 }
 
 .spinner > div {
@@ -268,21 +269,25 @@ span.icoMoon.icoMoon-marker {
 .spinner .rect2 {
   -webkit-animation-delay: -1.6s;
   animation-delay: -1.6s;
+  background-color: #3493FF;
 }
 
 .spinner .rect3 {
   -webkit-animation-delay: -1.5s;
   animation-delay: -1.5s;
+  background-color: #3493FF;
 }
 
 .spinner .rect4 {
   -webkit-animation-delay: -1.4s;
   animation-delay: -1.4s;
+  background-color: #3493FF;
 }
 
 .spinner .rect5 {
   -webkit-animation-delay: -1.3s;
   animation-delay: -1.3s;
+  background-color: #3493FF;
 }
 
 @-webkit-keyframes sk-stretchdelay {
