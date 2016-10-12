@@ -1,64 +1,36 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar primary>
     <ion-title>{{'Jeepneys'}}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding class="bg">
-  <!-- <div class="backDiv">
-        <div class="strechDiv" > -->
-          <!-- <form name="findRoutesForm" novalidate>
-            <ion-item-group>
-              <ion-item-divider light>{{'From:'}}</ion-item-divider>
-              <button ion-item detail-none (click)="showModal('from')">
-                {{from}}
-                <button item-right>
-                  &nbsp;<ion-icon name="arrow-dropdown"></ion-icon>&nbsp;
-                </button>
+  <ion-card style="background-color:white">
+    <ion-card-header>{{'From:'}}</ion-card-header>
+    <ion-list>
+      <button ion-item detail-none (click)="showModal('from')">
+        {{from}}
+        <button ion-button item-right>
+          &nbsp;<ion-icon name="arrow-dropdown"></ion-icon>&nbsp;
+        </button>
 
-              </button>
-              <input type="hidden" id="hiddenFrom"/>
-              <ion-item-divider light>{{'To:'}}</ion-item-divider>
-              <button ion-item detail-none (click)="showModal('to')">
-                {{to}}
-                <button item-right>
-                  &nbsp;<ion-icon name="arrow-dropdown"></ion-icon>&nbsp;
-                </button>
-              </button>
-              <input type="hidden" id="hiddenTo"/>
-              <button full (click)="submitForm(from,to)">
-                {{'Find Routes'}}
-              </button>
-            </ion-item-group>
-        </form> -->
-        <!-- </div>
-      </div> -->
-      <!-- <ion-card style="background-color:white">
-        <ion-card-header>{{'From:'}}</ion-card-header>
-        <ion-list>
-          <button ion-item detail-none (click)="showModal('from')">
-            {{from}}
-            <button item-right>
-              &nbsp;<ion-icon name="arrow-dropdown"></ion-icon>&nbsp;
-            </button>
-
-          </button>
-          <input type="hidden" id="hiddenFrom"/>
-        </ion-list>
-        <ion-card-header>{{'To:'}}</ion-card-header>
-        <ion-list>
-          <button ion-item detail-none (click)="showModal('to')">
-            {{to}}
-            <button item-right>
-              &nbsp;<ion-icon name="arrow-dropdown"></ion-icon>&nbsp;
-            </button>
-          </button>
-          <input type="hidden" id="hiddenTo"/>
-        </ion-list>
-        <ion-list>
-          <button full (click)="submitForm(from,to)">
-            {{'Find Routes'}}
-          </button>
-        </ion-list>
-      </ion-card> -->
+      </button>
+      <input type="hidden" id="hiddenFrom"/>
+    </ion-list>
+    <ion-card-header>{{'To:'}}</ion-card-header>
+    <ion-list>
+      <button ion-item detail-none (click)="showModal('to')">
+        {{to}}
+        <button ion-button item-right>
+          &nbsp;<ion-icon name="arrow-dropdown"></ion-icon>&nbsp;
+        </button>
+      </button>
+      <input type="hidden" id="hiddenTo"/>
+    </ion-list>
+    <ion-list>
+      <button ion-button full (click)="submitForm(from,to)">
+        {{'Find Routes'}}
+      </button>
+    </ion-list>
+  </ion-card>
 
 </ion-content>

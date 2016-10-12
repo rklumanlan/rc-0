@@ -94,6 +94,11 @@ export class MainPage {
                document.getElementById('mainBtnLoc').style.display = "inline";
                document.getElementById('mainLoaderLoc').style.display = "none";
              }
+             else{
+               console.log("me.geolocation2 is undefind");
+               document.getElementById('mainBtnLoc').style.display = "inline";
+               document.getElementById('mainLoaderLoc').style.display = "none";
+             }
 
 
             });

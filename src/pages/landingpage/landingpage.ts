@@ -98,6 +98,11 @@ export class LandingPage {
 
                }, 2000);
              }
+             else{
+               console.log("locna is undefind");
+               document.getElementById('lndBtnLoc').style.display = "inline";
+               document.getElementById('lndLoaderLoc').style.display = "none";
+             }
 
 
             });

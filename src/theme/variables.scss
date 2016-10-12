@@ -55,11 +55,17 @@ $ionicons-font-path: "../assets/fonts";
 $bg-pattern: url("../assets/img/mainBG/bg_pattern.png");
 $map_pin: url("../assets/img/mainBG/pin.png");
 $ph_map: url("../assets/img/mainBG/ph_map.png");
+
+//list
 $list-background-color: transparent;
-$toolbar-border-color: #2A7EDD;
+$item-ios-divider-background: #f7f7f7;
+$item-md-divider-background: #f7f7f7;
+
 
 
 //tabs
+$toolbar-border-color: #2A7EDD;
+
 $tabs-ios-background: #2A7EDD;
 $tabs-ios-border: 1px solid #004eff;
 $tabs-ios-tab-color: #a2ccfb;

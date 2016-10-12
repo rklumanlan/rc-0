@@ -241,12 +241,12 @@ export class UniPage {
 
   }
 
-  updatePlaceType(){
+  updatePlaceType(placetype){
     document.getElementById('loading').style.display="inline";
     var me = this;
     me.params.geoloc = this.details;
-    me.params.placeType = me.placeType;
-    if (me.placeType == 'cafe') {
+    me.params.placeType = placetype;
+    if (placetype == 'cafe') {
       me.params.cuisine = '';
       me.disable = true;
     }

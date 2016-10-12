@@ -253,7 +253,7 @@ span.icoMoon.icoMoon-marker {
   top: 0; left: 0; bottom: 0; right: 0;
   height: 85px;
   text-align: center;
-  background-color: #3493FF;
+
 }
 
 .spinner > div {
@@ -264,6 +264,8 @@ span.icoMoon.icoMoon-marker {
 
   -webkit-animation: sk-stretchdelay 1.7s infinite ease-in-out;
   animation: sk-stretchdelay 1.7s infinite ease-in-out;
+
+  background-color: #3493FF;
 }
 
 .spinner .rect2 {
