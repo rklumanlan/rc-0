@@ -1,6 +1,7 @@
 import {AlertController, ToastController} from 'ionic-angular';
 import {Injectable} from '@angular/core';
 import {ConnectivityService} from '../../providers/connectivity-service/connectivity-service';
+import {TranslateService} from 'ng2-translate/ng2-translate';
 
 declare var google;
 
@@ -13,7 +14,7 @@ export class GeolocationService {
   latlng: any = {};
   // mainPage:any  = MainPage;
 
-  constructor( public alertCtrl: AlertController, public toastCtrl: ToastController, public connectivity: ConnectivityService) {
+  constructor( public alertCtrl: AlertController, public toastCtrl: ToastController, public connectivity: ConnectivityService, public translate: TranslateService) {
 
   }
 
@@ -239,15 +240,15 @@ export class GeolocationService {
       //     this.points.push(res);
       // });
 
-      // this.translate.get('Looks like there is a problem with your network connection. Try again later.').subscribe((res: string) => {
+      this.translate.get('Looks like there is a problem with your network connection. Try again later.').subscribe((res: string) => {
         let toast = this.toastCtrl.create({
-          message: 'Looks like there is a problem with your network connection. Try again later.',
+          message: res,
           duration: 5000,
           position: 'bottom'
         });
         toast.present();
 
-      // });
+      });
 
     };
 
@@ -499,26 +500,45 @@ export class GeolocationService {
   }
 
   netErrMsg(){
+    var title, subtitle;
 
     console.log("disable map");
+    this.translate.get('No connection').subscribe((res: string) => {
+      title = res;
+    });
+
+    this.translate.get('Looks like there is a problem with your network connection. Try again later.').subscribe((res: string) => {
+      subtitle = res;
+    });
+
     let alert = this.alertCtrl.create({
-      title: 'No connection',
-      subTitle: 'Looks like there is a problem with your network connection. Try again later.',
+      title: title,
+      subTitle: subtitle,
       buttons: ['OK']
     });
 
     alert.present();
 
-
   }
 
   locErrMsg(){
+    var title, subtitle;
+
+    console.log("disable map");
+    this.translate.get('No location found').subscribe((res: string) => {
+      title = res;
+    });
+
+    this.translate.get('Please enable your GPS location.').subscribe((res: string) => {
+      subtitle = res;
+    });
 
     let alert = this.alertCtrl.create({
-      title: 'No location found',
-      subTitle: 'Please enable your GPS location.',
+      title: title,
+      subTitle: subtitle,
       buttons: ['OK']
     });
+
     alert.present();
   }
 

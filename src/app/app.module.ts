@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 
@@ -23,6 +23,14 @@ import {DataService} from './../providers/data-service/data-service';
 
 
 
+import {BrowserModule} from "@angular/platform-browser";
+import {HttpModule, Http} from '@angular/http';
+import {TranslateService, TranslateLoader, TranslateStaticLoader, TranslateModule} from 'ng2-translate/ng2-translate';
+
+
+export function createTranslateLoader(http: Http) {
+    return new TranslateStaticLoader(http, './assets/i18n', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -42,13 +50,21 @@ import {DataService} from './../providers/data-service/data-service';
   ],
   imports: [
     IonicModule.forRoot(MyApp,{
-    iconMode: 'md',
-    backButtonIcon: 'ios-arrow-back',
-    backButtonText: '',
-    tabsPlacement: 'top',
-    prodMode: true
-  })
-  ],
+      iconMode: 'md',
+      backButtonIcon: 'ios-arrow-back',
+      backButtonText: '',
+      tabsPlacement: 'top',
+      prodMode: true
+    }),
+    BrowserModule,
+        HttpModule,
+        TranslateModule.forRoot({
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [Http]
+        })
+    ],
+  exports: [BrowserModule, HttpModule, TranslateModule],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,

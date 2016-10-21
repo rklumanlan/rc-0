@@ -4,6 +4,8 @@ import {Http, URLSearchParams} from '@angular/http';
 import 'rxjs/Rx';
 import {ConnectivityService} from '../../providers/connectivity-service/connectivity-service';
 
+import {TranslateService} from 'ng2-translate/ng2-translate';
+
 
 
 declare var google;
@@ -11,61 +13,6 @@ declare var google;
 
 @Injectable()
 export class GoogleMapsService {
-
-  // public map: any;
-  // public mapInitialised: boolean;
-  // public apiKey: string;
-  // public coords: any;
-  // public polylines1: any;
-  // public snappedCoordinates1: any;
-  // public polylines2: any;
-  // public snappedCoordinates2: any;
-  // public polylines3: any;
-  // public snappedCoordinates3: any;
-  // public polylines4: any;
-  // public snappedCoordinates4: any;
-  // public lineSymbol1: any;
-  // public lineSymbol2: any;
-  // public lineSymbol3: any;
-  // public lineSymbol4: any;
-  // public latlng1: any;
-  // public points1: any;
-  // public latlng2: any;
-  // public points2: any;
-  // public latlng3: any;
-  // public points3: any;
-  // public latlng4: any;
-  // public points4: any;
-  // public markers: any;
-  // public lat_array_coords1:any;
-  // public lat_array_coords2:any;
-  // public lat_array_coords3:any;
-  // public lat_array_coords4:any;
-  // public snappedPolyline1: any;
-  // public snappedPolyline2: any;
-  // public snappedPolyline3: any;
-  // public snappedPolyline4: any;
-  // public interpolate: any;
-  // public color1:any;
-  // public color2:any;
-  // public color3:any;
-  // public color4:any;
-  // public ctr1:any;
-  // public ctr2:any;
-  // public ctr3:any;
-  // public ctr4:any;
-  // public marker: any;
-  // public markerIcon:any;
-  // public start_new1:any;
-  // public start_new2:any;
-  // public start_new3:any;
-  // public start_new4:any;
-  // public end1Ctr:any;
-  // public end2Ctr:any;
-  // public end3Ctr:any;
-  // public end4Ctr:any;
-  // public fromId:any;
-  // public toId:any;
 
   public map:any = null;
   public mapInitialised:any = false;
@@ -158,94 +105,8 @@ export class GoogleMapsService {
 
 
 
-  constructor( public alertCtrl: AlertController, public toastCtrl: ToastController, public connectivity: ConnectivityService, public http: Http) {
-    // this.map = null;
-    // this.mapInitialised = false;
-    // this.apiKey = 'AIzaSyD4zGo9cejtd83MbUFQL8YU71b8_A5XZpc';
-    //
-    //
-    // this.coords = null;
-    // this.interpolate = true;
-    //
-    //
-    //
-    // //fit markers to screen
-    // this.markers = [];
-    //
-    // //marker hide/showing
-    // this.markerIcon = [];
-    //
-    // //array for point a or display jeepney route
-    // this.polylines1 = [];
-    // this.snappedCoordinates1 = [];
-    // this.lineSymbol1 = null;
-    //
-    // //array for point b
-    // this.polylines2 = [];
-    // this.snappedCoordinates2 = [];
-    // this.lineSymbol2 = null;
-    //
-    // //array for pointc
-    // this.polylines3 = [];
-    // this.snappedCoordinates3 = [];
-    // this.lineSymbol3 = null;
-    //
-    // //array for pointd
-    // this.polylines4 = [];
-    // this.snappedCoordinates4 = [];
-    // this.lineSymbol4 = null;
-    //
-    // //this.latlng1 = coordinates for point a
-    // this.latlng1 = undefined;
-    // this.points1 = undefined;
-    //
-    // //this.latlng2 = coordinates for point b
-    // this.latlng2 = undefined;
-    // this.points2 = undefined;
-    //
-    //
-    // //latlng3 = coordinates for point c
-    // this.latlng3 = undefined;
-    // this.points3 = undefined;
-    //
-    // //latlng3 = coordinates for point c
-    // this.latlng4 = undefined;
-    // this.points4 = undefined;
-    //
-    // //color of the jeep
-    // this.color1 = null;
-    // this.color2 = null;
-    // this.color3 = null;
-    // this.color4 = null;
-    //
-    // this.marker = null;
-    //
-    // this.start_new1 = undefined;
-    // this.start_new2 = undefined;
-    // this.start_new3 = undefined;
-    // this.start_new4 = undefined;
-    //
-    // this.end1Ctr = undefined;
-    // this.end2Ctr = undefined;
-    // this.end3Ctr = undefined;
-    // this.end4Ctr = undefined;
-    //
-    // this.lat_array_coords1 = null;
-    // this.lat_array_coords2 = null;
-    // this.lat_array_coords3 = null;
-    // this.lat_array_coords4 = null;
-    //
-    // this.snappedPolyline1 = null;
-    // this.snappedPolyline2 = null;
-    // this.snappedPolyline3 = null;
-    // this.snappedPolyline4 = null;
-    // this.ctr1 = undefined;
-    // this.ctr2 = undefined;
-    // this.ctr3 = undefined;
-    // this.ctr4 = undefined;
-    //
-    // this.fromId = null;
-    // this.toId = null;
+  constructor( public alertCtrl: AlertController, public toastCtrl: ToastController, public connectivity: ConnectivityService, public http: Http, public translate: TranslateService) {
+
   }
 
   loadGoogleMaps(opt){
@@ -780,11 +641,23 @@ export class GoogleMapsService {
   }
 
   locErrMsg(){
+    var title, subtitle;
+
+    console.log("disable map");
+    this.translate.get('No location found').subscribe((res: string) => {
+      title = res;
+    });
+
+    this.translate.get('Please enable your GPS location.').subscribe((res: string) => {
+      subtitle = res;
+    });
+
     let alert = this.alertCtrl.create({
-      title: 'No location found',
-      subTitle: 'Please enable your GPS location.',
+      title: title,
+      subTitle: subtitle,
       buttons: ['OK']
     });
+
     alert.present();
   }
 
@@ -922,12 +795,15 @@ export class GoogleMapsService {
 
     var onOffline = () =>{
         // me.disableMap();
-        let toast = me.toastCtrl.create({
-          message:'Looks like there is a problem with your network connection. Try again later.',
-          duration: 5000,
-          position: 'bottom'
+        this.translate.get('Looks like there is a problem with your network connection. Try again later.').subscribe((res: string) => {
+          let toast = this.toastCtrl.create({
+            message: res,
+            duration: 5000,
+            position: 'bottom'
+          });
+          toast.present();
+
         });
-        toast.present();
     };
 
     document.addEventListener('online', onOnline, false);
@@ -1687,14 +1563,25 @@ export class GoogleMapsService {
 
   //error message when cennection lost
   disableMap(){
+    var title, subtitle;
+
     console.log("disable map");
+    this.translate.get('No connection').subscribe((res: string) => {
+      title = res;
+    });
+
+    this.translate.get('Looks like there is a problem with your network connection. Try again later.').subscribe((res: string) => {
+      subtitle = res;
+    });
+
     let alert = this.alertCtrl.create({
-      title: 'No connection',
-      subTitle: 'Looks like there is a problem with your network connection. Try again later.',
+      title: title,
+      subTitle: subtitle,
       buttons: ['OK']
     });
 
     alert.present();
+
   }
 
 

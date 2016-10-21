@@ -3,6 +3,7 @@ import {NavController, NavParams, Content} from 'ionic-angular';
 
 import {GeolocationService} from '../../providers/geolocation-service/geolocation-service';
 import {ConnectivityService} from '../../providers/connectivity-service/connectivity-service';
+import {TranslateService} from 'ng2-translate/ng2-translate';
 
 import {UniDetailPage} from '../uni-detail-page/uni-detail-page';
 
@@ -32,7 +33,7 @@ export class UniPage {
   public placeType: any;
   public cuisine: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocationService: GeolocationService, public connectivity: ConnectivityService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocationService: GeolocationService, public connectivity: ConnectivityService, public translate: TranslateService) {
     this.details = navParams.get('geoloc');
     this.page = navParams.get('page');
 
@@ -51,8 +52,8 @@ export class UniPage {
     if(this.page =='resto'){
       this.title_header = "Restaurants";
       this.pl_type_items = [
-        { value: "restaurant", text: 'Restaurant', checked: true},
-        { value: "cafe", text: 'Cafe', checked: false},
+        { value: "restaurant", text: 'Restaurants', checked: true},
+        { value: "cafe", text: 'Cafés', checked: false},
       ];
 
       this.cui_items = [
@@ -72,32 +73,32 @@ export class UniPage {
     }
     else if(this.page =='hotels'){
       this.title_header = "Hotels";
-      this.pl_type_items = [{ value: "lodging", text: 'Hotel', checked: true}];
+      this.pl_type_items = [{ value: "lodging", text: 'Hotels', checked: true}];
     }
     else if(this.page =='malls'){
       this.title_header = "Malls";
       this.pl_type_items = [
-        { value: "shopping_mall", text: 'Mall', checked: true},
-        { value: "department_store", text: 'Department Store', checked: false},
-        { value: "clothing_store", text: 'Clothing Store', checked: false},
-        { value: "shoe_store", text: 'Shoe Store', checked: false},
+        { value: "shopping_mall", text: 'Malls', checked: true},
+        { value: "department_store", text: 'Department Stores', checked: false},
+        { value: "clothing_store", text: 'Clothing Stores', checked: false},
+        { value: "shoe_store", text: 'Shoe Stores', checked: false},
       ];
     }
     else if(this.page =='supermarkets'){
       this.title_header = "Supermarkets";
-      this.pl_type_items = [{ value: "grocery_or_supermarket", text: 'Supermarket', checked: true}];
+      this.pl_type_items = [{ value: "grocery_or_supermarket", text: 'Supermarkets', checked: true}];
     }
     else if(this.page =='salons'){
       this.title_header = "Beauty Salons";
-      this.pl_type_items = [{ value: "beauty_salon", text: 'Beauty Salon', checked: true}];
+      this.pl_type_items = [{ value: "beauty_salon", text: 'Beauty Salons', checked: true}];
     }
     else if(this.page =='police'){
-      this.title_header = "Police Staions";
-      this.pl_type_items = [{ value: "police", text: 'Police Station', checked: true}];
+      this.title_header = "Police Stations";
+      this.pl_type_items = [{ value: "police", text: 'Police Stations', checked: true}];
     }
     else if(this.page =='hospitals'){
       this.title_header = "Hospitals";
-      this.pl_type_items = [{ value: "hospital", text: 'Hospital', checked: true}];
+      this.pl_type_items = [{ value: "hospital", text: 'Hospitals', checked: true}];
     }
 
     this.sort_items = [

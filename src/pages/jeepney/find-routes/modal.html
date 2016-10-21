@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar primary>
-    <ion-title>Jeepneys</ion-title>
+    <ion-title>{{'Jeepneys'|translate}}</ion-title>
     <ion-buttons end>
       <button ion-button color="light" (click)="close()">
         <ion-icon name="md-close"></ion-icon>
@@ -8,7 +8,7 @@
     </ion-buttons>
   </ion-navbar>
   <ion-toolbar>
-    <ion-searchbar cancelButtonText="{{'Cancel'}}" placeholder="{{'Search'}}"  (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-searchbar cancelButtonText="{{'Cancel'|translate}}" placeholder="{{'Search'|translate}}"  (ionInput)="getItems($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 

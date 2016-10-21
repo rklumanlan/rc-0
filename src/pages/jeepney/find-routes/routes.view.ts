@@ -5,6 +5,8 @@ import {Modal, NavController, AlertController, ModalController} from 'ionic-angu
 import {MyModal} from '../../jeepney/find-routes/modal';
 import {RoutesMapsPage} from '../../jeepney/find-routes/routes.map';
 
+import {TranslateService} from 'ng2-translate/ng2-translate';
+
 @Component({
   templateUrl: 'routes.view.html'
 })
@@ -14,7 +16,7 @@ export class FindRoutesPage {
   public from: string;
   public to: string;
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public alertCtrl: AlertController){
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public alertCtrl: AlertController, public translate: TranslateService){
     this.from = 'Choose starting point';
     this.to = 'Choose destination';
   }
@@ -31,9 +33,9 @@ export class FindRoutesPage {
       if (data!=undefined) {
         if (ctr=='from') {
           if (navigator.language.split('-')[0]=='en') {
-            // this.translate.get(data.point).subscribe((res: string) => {
-                this.from = data.point;
-            // });
+            this.translate.get(data.point).subscribe((res: string) => {
+                this.from = res;
+            });
           }
           else {
             this.from = data.point;
@@ -42,9 +44,9 @@ export class FindRoutesPage {
         }
         else if (ctr=='to') {
           if (navigator.language.split('-')[0]=='en') {
-            // this.translate.get(data.point).subscribe((res: string) => {
-                this.to = data.point;
-            // });
+            this.translate.get(data.point).subscribe((res: string) => {
+                this.to = res;
+            });
           }
           else {
             this.to = data.point;
@@ -154,35 +156,14 @@ export class FindRoutesPage {
 
   alertBox(to){
     var transTitle,subtitle;
-    var alertTrans = [{
-      "You are just near to Marquee Mall. You don\'t need to ride a jeepney.":"マーキーモールが近くにあります。ジープニーに乗る必要はありません。",
-      "You are just near to SM City Clark. You don\'t need to ride a jeepney.":"SMシティクラークが近くにあります。ジープニーに乗る必要はありません。",
-      "You are just near to Main Gate Terminal. You don\'t need to ride a jeepney.":"メインゲートターミナルが近くにあります。ジープニーに乗る必要はありません。",
-      "You are just near to Angeles University Foundation. You don\'t need to ride a jeepney.":"アンヘレス大学財団が近くにあります。ジープニーに乗る必要はありません。",
-      "You are just near to Angeles University Foundation Medical Center. You don\'t need to ride a jeepney.":"アンヘレス大学財団医療センターが近くにあります。ジープニーに乗る必要はありません。",
-      "You are just near to Holy Rosary Parish Church. You don\'t need to ride a jeepney.":"ホーリーロザリオ教区教会が近くにあります。ジープニーに乗る必要はありません。",
-      "You are just near to Holy Angel University. You don\'t need to ride a jeepney.":"ホーリーエンジェル大学が近くにあります。ジープニーに乗る必要はありません。",
-      "You are just near to Systems Plus College Foundation. You don\'t need to ride a jeepney.":"システムプラスカレッジ財団が近くにあります。ジープニーに乗る必要はありません。",
-      "You are just near to Immaculate Concepcion Parish. You don\'t need to ride a jeepney.":"無原罪のお宿りの教区が近くにあります。ジープニーに乗る必要はありません。",
-      "You are just near to Timog Park Gate 3. You don\'t need to ride a jeepney.":"Timogパークゲート 3が近くにあります。ジープニーに乗る必要はありません。",
-      "You are just near to Friendship Plaza. You don\'t need to ride a jeepney.":"フレンドシッププラザが近くにあります。ジープニーに乗る必要はありません。",
-      "You are just near to Nepo Mall. You don\'t need to ride a jeepney.":"ネポモールが近くにあります。ジープニーに乗る必要はありません。",
-      "You are just near to Jenra Mall. You don\'t need to ride a jeepney.":"ジェンラモールが近くにあります。ジープニーに乗る必要はありません。",
-      "You are just near to Angeles City Hall. You don\'t need to ride a jeepney.":"アンヘレス市ホールが近くにあります。ジープニーに乗る必要はありません。",
-      "You are just near to Saver\'s Mall. You don\'t need to ride a jeepney.":"セーバーのモールが近くにあります。ジープニーに乗る必要はありません。",
-      "You are just near to Diamond Subdivision. You don\'t need to ride a jeepney.":"ダイヤモンド区が近くにあります。ジープニーに乗る必要はありません。",
-      "You are just near to Carmenville. You don\'t need to ride a jeepney.":"カルメンヴィルが近くにあります。ジープニーに乗る必要はありません。",
-      "You are just near to Timog Park Gate 1. You don\'t need to ride a jeepney.":"Timogパークゲート1が近くにあります。ジープニーに乗る必要はありません。"
-    }];
 
-    if (navigator.language.split('-')[0]=='ja') {
-      transTitle = "アラート";
-      subtitle = alertTrans[0]['You are just near to '+to+'. You don\'t need to ride a jeepney.'];
-    }
-    else {
-      transTitle = "Alert";
-      subtitle = 'You are just near to '+to+'. You don\'t need to ride a jeepney.';
-    }
+    this.translate.get("Alert").subscribe((res: string) => {
+      transTitle = res;
+    });
+
+    this.translate.get('You are just near to '+to+'. You don\'t need to ride a jeepney.').subscribe((res: string) => {
+      subtitle = res;
+    });
 
     var me = this;
     let alert = me.alertCtrl.create({

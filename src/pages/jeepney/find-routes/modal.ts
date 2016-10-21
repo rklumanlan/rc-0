@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {ModalController, NavController, ViewController,NavParams} from 'ionic-angular';
 import {DataService} from '../../../providers/data-service/data-service';
+import {TranslateService} from 'ng2-translate/ng2-translate';
 
 @Component({
   templateUrl: 'modal.html'
@@ -12,7 +13,7 @@ export class MyModal {
   public searchQuery: any;
   public items: any;
 
-  constructor(public navCtrl: NavController, public viewCtrl: ViewController, public modalCtrl: ModalController, public navParams: NavParams, public dataService: DataService){
+  constructor(public navCtrl: NavController, public viewCtrl: ViewController, public modalCtrl: ModalController, public navParams: NavParams, public dataService: DataService,  public translate: TranslateService){
     this.points = [];
 
     console.log(this.dataService.getPoints());
@@ -23,9 +24,9 @@ export class MyModal {
           if (navigator.language.split('-')[0]=='en') {
             // console.log(this.jp[0][data.rows.item(i).text]);
             // this.points.push(this.jp[0][data.rows.item(i).text]);
-            // translate.get(data.rows.item(i).text).subscribe((res: string) => {
-                this.points.push(data.rows.item(i).text);
-            // });
+            translate.get(data.rows.item(i).text).subscribe((res: string) => {
+                this.points.push(res);
+            });
           }
           else {
             this.points.push(data.rows.item(i).text);
