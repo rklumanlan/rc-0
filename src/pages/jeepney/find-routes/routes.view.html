@@ -8,7 +8,7 @@
     <ion-card-header>{{'From:'|translate}}</ion-card-header>
     <ion-list>
       <button ion-item detail-none (click)="showModal('from')">
-        {{from}}
+        {{from|translate}}
         <button ion-button item-right>
           &nbsp;<ion-icon name="arrow-dropdown"></ion-icon>&nbsp;
         </button>
@@ -19,7 +19,7 @@
     <ion-card-header>{{'To:'|translate}}</ion-card-header>
     <ion-list>
       <button ion-item detail-none (click)="showModal('to')">
-        {{to}}
+        {{to|translate}}
         <button ion-button item-right>
           &nbsp;<ion-icon name="arrow-dropdown"></ion-icon>&nbsp;
         </button>

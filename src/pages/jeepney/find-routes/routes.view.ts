@@ -6,6 +6,8 @@ import {MyModal} from '../../jeepney/find-routes/modal';
 import {RoutesMapsPage} from '../../jeepney/find-routes/routes.map';
 
 import {TranslateService} from 'ng2-translate/ng2-translate';
+import {ConnectivityService} from '../../../providers/connectivity-service/connectivity-service';
+import {GoogleMapsService} from '../../../providers/google-maps-service/google-maps-service';
 
 @Component({
   templateUrl: 'routes.view.html'
@@ -16,7 +18,7 @@ export class FindRoutesPage {
   public from: string;
   public to: string;
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public alertCtrl: AlertController, public translate: TranslateService){
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public alertCtrl: AlertController, public translate: TranslateService, public connectivity: ConnectivityService, public googleMapsService: GoogleMapsService){
     this.from = 'Choose starting point';
     this.to = 'Choose destination';
   }
@@ -24,7 +26,47 @@ export class FindRoutesPage {
   showModal(ctr){
 
     var me = this;
-
+    var trans = [{
+      "アンヘレスシティホール":"Angeles City Hall",
+      "Angeles Medical Center Inc.":"Angeles Medical Center Inc.",
+      "アンヘレスユニバーシティファウンデーション":"Angeles University Foundation",
+      "AUF メディカルセンター":"Angeles University Foundation Medical Center",
+      "アヌナス":"Anunas",
+      "バンカル":"Bancal",
+      "Carmenville":"Carmenville",
+      "シティセンター":"Citi Center",
+      "アンヘレスシティ大学":"City College of Angeles",
+      "Cuayan":"Cuayan",
+      "ダイアモンドサブディビジョン":"Diamond Subdivision",
+      "Dr. Amando L. Garcia Medical Center, Inc.":"Dr. Amando L. Garcia Medical Center, Inc.",
+      "フィールズアベニュー":"Fields Avenue",
+      "フレンドシップ":"Friendship",
+      "フレンドシッププラザ":"Friendship Plaza",
+      "ホリーエンジェル大学":"Holy Angel University",
+      "ホリーファミリーメディカルセンター":"Holy Family Medical Center",
+      "Holy Rosary Parish Church":"Holy Rosary Parish Church",
+      "イマキュレートコンセプションパリッシュ":"Immaculate Concepcion Parish",
+      "Jenra Mall":"Jenra Mall",
+      "ルーデスノースウェスト":"Lourdes North West",
+      "メインゲートターミナル":"Main Gate Terminal",
+      "マーゴット":"Margot",
+      "マリソル":"Marisol",
+      "マーキーモール":"Marquee Mall",
+      "Nepo Mall":"Nepo Mall",
+      "ラファエルラサティンメモリアルメディカルセンター":"Rafael Lazatin Memorial Medical Center",
+      "リパブリックセントラルコレッジズ":"Republic Central Colleges",
+      "SMシティクラーク":"SM City Clark",
+      "サクレッドハートメディカルセンター":"Sacred Heart Medical Center",
+      "サパンベイトー":"Sapang Bato",
+      "Saver\'s Mall":"Saver\'s Mall",
+      "システムズプラスカレッジファウンデーション":"Systems Plus College Foundation",
+      "ザメディカルシティ - アンヘレス":"The Medical City Angeles",
+      "チモグパークゲート1":"Timog Park Gate 1",
+      "チモグパークゲート 2":"Timog Park Gate 2",
+      "チモグパークゲート 3":"Timog Park Gate 3",
+      "トランスファ":"Transfer",
+      "Villa Sol":"Villa Sol",
+    }];
     console.log(ctr);
     let profileModal = me.modalCtrl.create(MyModal, { ctrId: ctr });
     profileModal.onDidDismiss(data => {
@@ -32,10 +74,8 @@ export class FindRoutesPage {
       console.log(data!=undefined);
       if (data!=undefined) {
         if (ctr=='from') {
-          if (navigator.language.split('-')[0]=='en') {
-            this.translate.get(data.point).subscribe((res: string) => {
-                this.from = res;
-            });
+          if (navigator.language.split('-')[0]=='ja') {
+            this.from = trans[0][data.point];
           }
           else {
             this.from = data.point;
@@ -43,10 +83,8 @@ export class FindRoutesPage {
 
         }
         else if (ctr=='to') {
-          if (navigator.language.split('-')[0]=='en') {
-            this.translate.get(data.point).subscribe((res: string) => {
-                this.to = res;
-            });
+          if (navigator.language.split('-')[0]=='ja') {
+            this.to = trans[0][data.point];
           }
           else {
             this.to = data.point;
@@ -58,20 +96,54 @@ export class FindRoutesPage {
       // console.log(data.point);
     });
     profileModal.present();
+
+    // var me = this;
+    //
+    // console.log(ctr);
+    // let profileModal = me.modalCtrl.create(MyModal, { ctrId: ctr });
+    // profileModal.onDidDismiss(data => {
+    //   console.log(data);
+    //   console.log(data!=undefined);
+    //   if (data!=undefined) {
+    //
+    //     if (ctr=='from') {
+    //       console.log("from+"+data.point);
+    //       if (navigator.language.split('-')[0]=='en') {
+    //         this.translate.get(data.point).subscribe((res: string) => {
+    //             this.from = res;
+    //         });
+    //       }
+    //       else {
+    //         this.from = data.point;
+    //       }
+    //
+    //     }
+    //     else if (ctr=='to') {
+    //       console.log("to+"+data.point);
+    //       if (navigator.language.split('-')[0]=='en') {
+    //         this.translate.get(data.point).subscribe((res: string) => {
+    //             this.to = res;
+    //         });
+    //       }
+    //       else {
+    //         this.to = data.point;
+    //       }
+    //     }
+    //   }
+    //
+    //
+    //   // console.log(data.point);
+    // });
+    // profileModal.present();
   }
   submitForm(from,to){
     var me = this;
 
     var transTitle;
 
-    if (navigator.language.split('-')[0]=='ja') {
-      transTitle = "アラート";
-    }
-    else {
-      transTitle = "Alert";
-    }
-
-
+    this.translate.get("Alert").subscribe((res: string) => {
+      transTitle = res;
+    });
 
     if(from == 'Choose starting point' || to == 'Choose destination'){
       console.log(from+"-"+to);
@@ -148,8 +220,17 @@ export class FindRoutesPage {
       me.alertBox(to);
     }
     else {
-      console.log(from+"="+to);
-      this.navCtrl.push(RoutesMapsPage, { from: from, to: to });
+
+
+      if(me.connectivity.isOnline()){
+        console.log(from+"="+to);
+        this.navCtrl.push(RoutesMapsPage, { from: from, to: to });
+      }
+      else {
+        console.log("disabling map");
+        me.googleMapsService.disableMap();
+        me.navCtrl.pop();
+      }
     }
 
   }

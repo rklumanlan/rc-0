@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {NavParams, NavController} from 'ionic-angular';
 import {JeepMapsPage} from '../../jeepney/jeep-routes/jeep.map';
 import {DataService} from '../../../providers/data-service/data-service';
+import {ConnectivityService} from '../../../providers/connectivity-service/connectivity-service';
+import {GoogleMapsService} from '../../../providers/google-maps-service/google-maps-service';
 
 @Component({
   templateUrl: 'jeep.details.html'
@@ -13,7 +15,7 @@ export class JeepDetailsPage {
   public jeepDetails: any;
   public disable: any;
 
-  constructor(public dataService: DataService, public navParams: NavParams, public navCtrl: NavController){
+  constructor(public dataService: DataService, public navParams: NavParams, public navCtrl: NavController, public connectivity: ConnectivityService, public googleMapsService: GoogleMapsService){
     this.details = navParams.get('jeep');
 
     console.log(this.details.name);
@@ -37,8 +39,18 @@ export class JeepDetailsPage {
   }
 
   presentModal() {
+    var me = this;
     console.log('present modal');
     console.log(this.jeepDetails[0] );
-    this.navCtrl.push(JeepMapsPage, { jeep: this.jeepDetails[0] });
+
+
+    if(me.connectivity.isOnline()){
+        me.navCtrl.push(JeepMapsPage, { jeep: this.jeepDetails[0] });
+    }
+    else {
+        console.log("disabling map");
+        me.googleMapsService.disableMap();
+        me.navCtrl.pop();
+    }
   }
 }

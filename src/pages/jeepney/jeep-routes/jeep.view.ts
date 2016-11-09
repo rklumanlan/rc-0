@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {DataService} from '../../../providers/data-service/data-service';
 import {JeepDetailsPage} from '../../jeepney/jeep-routes/jeep.details';
 
+import {TranslateService} from 'ng2-translate/ng2-translate';
+
 @Component({
   templateUrl: 'jeep.view.html'
 })
@@ -13,10 +15,14 @@ export class JeepRoutesPage {
   public cjeeps: any;
   public divider: any;
 
-  constructor(public dataService: DataService){
+  constructor(public dataService: DataService, public translate: TranslateService){
     this.acjeeps = [];
     this.cjeeps = [];
     this.divider = ['Angeles','Clark'];
+
+    this.translate.get('asd').subscribe((res: string) => {
+        console.log(res);
+    });
 
     this.dataService.getAllData('Angeles').then((data) => {
       console.log("getAllData from jeep table");

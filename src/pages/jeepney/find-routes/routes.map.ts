@@ -10,10 +10,10 @@ import {DataService} from '../../../providers/data-service/data-service';
 
 export class RoutesMapsPage {
 
-  private from: string;
-  private to: string;
+  public from: string;
+  public to: string;
 
-  constructor(private navParams: NavParams, private googleMapsService: GoogleMapsService, private dataService: DataService){
+  constructor(public navParams: NavParams, public googleMapsService: GoogleMapsService, public dataService: DataService){
     this.from = this.navParams.get('from');
     this.to = this.navParams.get('to');
     console.log(this.from+" "+this.to);
